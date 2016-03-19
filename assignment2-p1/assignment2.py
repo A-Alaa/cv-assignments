@@ -14,7 +14,7 @@ import myHoughLine
 imageFiles = [join("../images/assignment2" , f) for f in
               listdir("../images/assignment2") if
               isfile(join("../images/assignment2" , f))]
-imageFile = "../images/assignment2/Regular-Shapes.jpg"
+imageFile = "../images/assignment2/Lines.jpg"
 
 # Load the images
 # Gray image is calculated as :
@@ -29,15 +29,18 @@ image_GRAY = np.float64(image_GRAY)
 image_GRAY = cv2.normalize(image_GRAY , image_GRAY , 0 , 1 , cv2.NORM_MINMAX ,
                            cv2.CV_64F)
 
-cannyImage = myCanny.myCanny(image_GRAY , 3 , 1.0 , 0.2 , 0.9)
+cannyImage = myCanny.myCanny(image_GRAY , 3 , 1.0 , 0.2 , 0.2)
 
-linesBuffer = myHoughLine.myHoughLines(cannyImage , np.pi / 180 , 0.9 )
+lines = myHoughLine.myHoughLines(cannyImage , np.pi / 180 , 200)
+#
+# lines = cv2.HoughLines(np.uint8(np.abs(cannyImage) * 255) , 1 ,
+#                              1 / np.pi , 50)
+linesOnlyDraft = np.zeros(image.shape , dtype = np.uint8)
 
-linesOnlyDraft = np.empty(image.shape , dtype = np.uint8)
-
-for line in linesBuffer :
-    theta = line[0]
-    rho = line[1]
+if lines is None :
+    print "No lines detected"
+    exit(1)
+for theta , rho in lines :
     a = np.cos(theta)
     b = np.sin(theta)
     x0 = a * rho
@@ -46,18 +49,37 @@ for line in linesBuffer :
     y1 = int(y0 + 1000 * (a))
     x2 = int(x0 - 1000 * (-b))
     y2 = int(y0 - 1000 * (a))
-    cv2.line( linesOnlyDraft  , (x1 , y1) , (x2 , y2) , (0 , 255 , 0) , 1)
+    cv2.line(linesOnlyDraft , (x1 , y1) , (x2 , y2) , (0 , 255 , 0) , 2)
 
-linesOnlyImage = np.empty(image.shape , dtype = np.uint8)
+
+
+
+linesOnlyImage = np.zeros(image.shape , dtype = np.uint8)
 
 cannyImg_RGB = cv2.cvtColor(np.uint8(abs(cannyImage) * 255) ,
                             cv2.COLOR_GRAY2BGR)
 
 cv2.bitwise_and(linesOnlyDraft , cannyImg_RGB ,
                 linesOnlyImage)
-linesOnlyImage = cv2.addWeighted(image , 0.5 , linesOnlyImage , 0.5 , 0)
 
-cv2.namedWindow("Line detection" , cv2.WINDOW_NORMAL)
-cv2.imshow("Line detection" , linesOnlyDraft)
+image = cv2.addWeighted(image , 0.5 , linesOnlyImage , 0.5 , 0)
+
+# Edge Image
+cv2.namedWindow("Canny Image" , cv2.WINDOW_NORMAL)
+cv2.imshow("Canny Image" , cannyImage)
 cv2.waitKey()
-cv2.destroyAllWindows()
+
+# Lines Only Image
+cv2.namedWindow("Line Only" , cv2.WINDOW_NORMAL)
+cv2.imshow("Line Only", linesOnlyDraft)
+cv2.waitKey()
+
+# (Lines Only Image) AND (Edge Image)
+cv2.namedWindow("Lines Only AND Edge Image" , cv2.WINDOW_NORMAL)
+cv2.imshow("Lines Only AND Edge Image" , linesOnlyImage)
+cv2.waitKey()
+
+# (Lines Only Image) AND (Edge Image) + Original Image
+cv2.namedWindow("Lines Only AND Edge Image + Image" , cv2.WINDOW_NORMAL)
+cv2.imshow("Lines Only AND Edge Image + Image" , image)
+cv2.waitKey()

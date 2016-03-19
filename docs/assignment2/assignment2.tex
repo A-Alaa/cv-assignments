@@ -1,0 +1,178 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[journal,9pt,onecolumn,draftclsnofoot]{ieeeconf} % Comment this line out if you need a4paper
+
+
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+% The following packages can be found on http:\\www.ctan.org
+\usepackage{graphics} % for pdf, bitmapped graphics files
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+%\usepackage{amssymb}  % assumes amsmath package installed
+
+
+%-----------------------------------------------------------------------------
+% Graphics 
+%-----------------------------------------------------------------------------
+\usepackage{graphicx}
+%\usepackage{caption}
+%\usepackage{subfigure}
+%\usepackage{subfloat}
+
+\usepackage[tight,footnotesize]{subfigure}
+
+
+
+%-----------------------------------------------------------------------------
+% footnote
+%-----------------------------------------------------------------------------
+\usepackage{footnote}
+
+%-----------------------------------------------------------------------------
+% Acronyms  
+%-----------------------------------------------------------------------------
+\usepackage[nolist]{acronym}
+
+
+%-----------------------------------------------------------------------------
+% In-text author's citation  
+%-----------------------------------------------------------------------------
+
+
+%-----------------------------------------------------------------------------
+% Strikethrough  
+%-----------------------------------------------------------------------------
+\usepackage{soul}
+
+%-----------------------------------------------------------------------------
+% Math
+%-----------------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%-----------------------------------------------------------------------------
+% Set the default folder for images
+%-----------------------------------------------------------------------------
+\graphicspath{{images/}} 
+
+%-----------------------------------------------------------------------------
+% References
+%-----------------------------------------------------------------------------
+\usepackage{hyperref}
+
+%-----------------------------------------------------------------------------
+% Algorithms  
+%-----------------------------------------------------------------------------
+\usepackage{xcolor}
+\usepackage[procnames]{listings}
+\usepackage{color} 
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+\definecolor{blue}{rgb}{0.0, 0.0, 0.99}	
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstset{language=Python, 
+        basicstyle=\ttfamily\footnotesize, 
+        backgroundcolor=\color{backcolour}, 
+        keywordstyle=\color{keywords}\ttfamily,
+        commentstyle=\color{comments}\ttfamily,
+        stringstyle=\color{red}\ttfamily,
+        showstringspaces=false,   
+        identifierstyle=\color{green}\ttfamily,
+        procnamekeys={def,class}}
+        
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\hypersetup{
+	colorlinks = true, 
+	breaklinks = true, 
+	bookmarks = true,
+	bookmarksnumbered,
+	urlcolor = blue, 
+	linkcolor = blue, 
+	citecolor = blue, 
+	linktoc=page, 
+	pdftitle={}, 
+	pdfauthor={\textcopyright Author}, 
+	pdfsubject={}, 
+	pdfkeywords={}, 
+	pdfcreator={pdfLaTeX}, % PDF Creator
+	pdfproducer={IEEE} 
+}
+
+\title{\LARGE \bf
+Computer Vision Assignment 2
+}
+
+%-----------------------------------------------------------------------------
+%\begin{acronym}
+ 
+%\end{acronym}
+
+\author{
+ Asem Abdelaziz$^{1}$,
+ Mohamed Abdallah  $^{1}$, 
+ Taha Ali $^{2}$,
+ Abdelrahman Sayed$^{2}$
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+\section*{Problem1: Hough Transform} 
+\subsection*{Line Detection} 
+
+
+The general overview of line detection routine using \textit{Hough Transform}:
+\begin{enumerate}
+
+\item Edge detection (eg. using \textit{Canny edge detector}).
+\item Mapping each edge point to the \textit{Hough space}.
+\item For each mapped point, vote for each candidate line passing through the point, by incrementing an accumulator array at the corresponding line; line is represented by $\theta$ and $\rho$ (i.e angle and distance, respectively).
+\item Extract the most candidate lines.
+
+\end{enumerate} 
+\subsection*{Implementation}
+
+\textit{Python} is used as a wrapper to perform matrix operations to perform edge detection and lines detection. \textit{OpenCV} is only used for verifying our results, loading/showing images, and drawing lines.
+
+
+\subsubsection*{Canny Edge Detection}
+The following snippet code shows the workflow of \textit{Canny edge detector}, the details of the invoked subroutines are provided in the ~\nameref{appendix:canny-details} 
+\include{myCanny-main}
+
+\subsubsection*{ Hough Lines Detection }
+
+\subsection*{Results}
+
+
+
+\section*{Problem2: Active Contour Model}
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+\bibliographystyle{IEEEtran}
+\bibliography{references.bib} % The file containing the bibliography
+
+\section*{Appendix }
+\subsection*{Canny Edge Detector Subroutines}\label{appendix:canny-details}
+
+\include{myCanny}
+
+
+\end{document}
+

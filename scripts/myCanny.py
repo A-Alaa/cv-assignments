@@ -24,8 +24,8 @@ def __cannyNonMaximumSupression__( gradientImage , phaseImage ) :
     # make a copy.
     thinEdgedImage = np.array(gradientImage , copy = True)
 
-    for row in range(1 , gradientImage.shape[0] - 1) :
-        for col in range(1 , gradientImage.shape[1] - 1) :
+    for row in range(gradientImage.shape[0]) :
+        for col in range(gradientImage.shape[1]) :
             # If already supressed, proceed to the next pixel.
             if thinEdgedImage[row , col] == 0 :
                 continue
@@ -68,8 +68,8 @@ def __cannyNonMaximumSupression__( gradientImage , phaseImage ) :
 def __cannyDoubleThresholding__( image , minThreshold , maxThreshold ) :
     doubleThresholdImages = copy.deepcopy(image)
     image = doubleThresholdImages
-    for row in range(0 , image.shape[0] - 1) :
-        for col in range(0 , image.shape[1] - 1) :
+    for row in range(image.shape[0]) :
+        for col in range(image.shape[1]) :
             if image[row , col] < minThreshold :
                 image[row , col] = 0.0
             elif image[row , col] >= maxThreshold :
@@ -81,8 +81,8 @@ def __cannyDoubleThresholding__( image , minThreshold , maxThreshold ) :
 def __cannyEdgeTracking__( images , maxThreshold , minThreshold ) :
     edgeTrackingImages = copy.deepcopy(images)
     image = edgeTrackingImages
-    for row in range(1 , image.shape[0] - 1) :
-        for col in range(1 , image.shape[1] - 1) :
+    for row in range(image.shape[0]) :
+        for col in range(image.shape[1]) :
 
             if image[row , col] > maxThreshold :
                 image[row , col] = 1.0
