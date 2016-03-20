@@ -14,13 +14,14 @@ import myHoughCircles
 imageFiles = [join("../images/assignment2" , f) for f in
               listdir("../images/assignment2") if
               isfile(join("../images/assignment2" , f))]
-imageFile = "../images/assignment2/bw.jpg"
+imageFile = "../images/assignment2/Apple2.jpg"
 
 # Load the images
 # Gray image is calculated as :
 # Y = 0.299 R + 0.587 G + 0.114 B
 image = cv2.imread(imageFile)
 image_GRAY = cv2.imread(imageFile , cv2.IMREAD_GRAYSCALE)
+
 
 # Convert from uint8 precision to double precision.
 image_GRAY = np.float64(image_GRAY)

@@ -2,8 +2,15 @@
 %2345678901234567890123456789012345678901234567890123456789012345678901234567890
 %        1         2         3         4         5         6         7         8
 
-\documentclass[journal,9pt,onecolumn,draftclsnofoot]{ieeeconf} % Comment this line out if you need a4paper
+\documentclass[letterpaper, 10 pt, conference ,onecolumn]{ieeeconf}  % Comment this line out if you need a4paper
 
+
+%\documentclass[•]{•}4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
+
+\IEEEoverridecommandlockouts                              % This command is only needed if 
+                                                          % you want to use the \thanks command
+
+\overrideIEEEmargins                                      % Needed to meet printer requirements.
 
 % See the \addtolength command later in the file to balance the column lengths
 % on the last page of the document
@@ -16,6 +23,10 @@
 %\usepackage{amsmath} % assumes amsmath package installed
 %\usepackage{amssymb}  % assumes amsmath package installed
 
+%-----------------------------------------------------------------------------
+% Correct bad hyphenation here
+%-----------------------------------------------------------------------------
+\hyphenation{op-tical net-works semi-conduc-tor}
 
 %-----------------------------------------------------------------------------
 % Graphics 
@@ -24,11 +35,19 @@
 %\usepackage{caption}
 %\usepackage{subfigure}
 %\usepackage{subfloat}
-%\usepackage{subfig}
 
 \usepackage[tight,footnotesize]{subfigure}
+	
 
+%-----------------------------------------------------------------------------
+% Orange notes 
+%-----------------------------------------------------------------------------
+\usepackage{todonotes}
 
+%-----------------------------------------------------------------------------
+% Hidden comments
+%-----------------------------------------------------------------------------
+\usepackage{comment}
 
 %-----------------------------------------------------------------------------
 % footnote
@@ -44,7 +63,6 @@
 %-----------------------------------------------------------------------------
 % In-text author's citation  
 %-----------------------------------------------------------------------------
-
 
 %-----------------------------------------------------------------------------
 % Strikethrough  
@@ -67,11 +85,6 @@
 %-----------------------------------------------------------------------------
 \usepackage{hyperref}
 
-%-----------------------------------------------------------------------------
-% Algorithms  
-%-----------------------------------------------------------------------------
-\usepackage{xcolor}
-\usepackage[procnames]{listings}
 \usepackage{color} 
 \definecolor{keywords}{RGB}{255,0,90}
 \definecolor{comments}{RGB}{0,0,113}
@@ -81,16 +94,13 @@
 \definecolor{black}{rgb}{0.0, 0.0, 0.0}	
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-\lstset{language=Python, 
-        basicstyle=\ttfamily\footnotesize, 
-        backgroundcolor=\color{backcolour}, 
-        keywordstyle=\color{keywords}\ttfamily,
-        commentstyle=\color{green}\ttfamily,
-        stringstyle=\color{red}\ttfamily,
-        showstringspaces=false,   
-        identifierstyle=\color{black}\ttfamily,
-        procnamekeys={def,class}}
-        
+
+\usepackage[procnames]{listings}
+
+\usepackage{caption}
+
+\include{InitializeAlgorithmPackage}
+  
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
@@ -112,7 +122,7 @@
 	pdfproducer={IEEE} 
 }
 
-\title{\LARGE \bf
+\title{
 Computer Vision Assignment 2
 }
 
@@ -122,21 +132,20 @@ Computer Vision Assignment 2
 %\end{acronym}
 
 \author{
- Asem Abdelaziz$^{1}$,
- Mohamed Abdallah  $^{1}$, 
- Taha Ali $^{2}$,
- Abdelrahman Sayed$^{2}$
+ Asem Abdelaziz,
+ Mohamed Abdallah, 
+ Taha Ali,
+ Abdelrahman Sayed
 }
 
 \begin{document}
 
 \maketitle
-\thispagestyle{empty}
-\pagestyle{empty}
 
 
-\section*{Problem1: Hough Transform} 
-\subsection*{Line Detection} 
+
+\section{Problem1: Hough Transform} 
+\subsection{Line Detection} 
 
 
 The general overview of line detection routine using \textit{Hough Transform}:
@@ -153,11 +162,13 @@ The general overview of line detection routine using \textit{Hough Transform}:
 \textit{Python} is used as a wrapper to perform matrix operations to perform edge detection and lines detection. \textit{OpenCV} is only used for verifying our results, loading/showing images, and drawing lines.
 
 
-\subsection*{Canny Edge Detection}
-The snippet code provided in ~\nameref{appendix:canny-main} shows the workflow of \textit{Canny edge detector}, the details of the invoked subroutines are provided in the ~\nameref{appendix:canny-details} 
+\subsection*{Canny Edge Detection: Implementation} 
+The snippet code provided in ~\nameref{imp:canny-main} shows the workflow of \textit{Canny edge detector}, the details of the invoked subroutines are provided in the ~\nameref{imp:canny-all}.
 
-\subsection*{ Hough Lines Detection }
-Note that mathematical library \textit{numpy} is the only dependency in our implementation in \textit{python}. see ~\nameref{appendix:hough-details}
+\subsection*{Hough Lines Detection: Implementation }
+
+
+Note that mathematical library \textit{numpy} is the only dependency in our implementation in \textit{python}. see ~\nameref{imp:hough-lines}.
 
 \subsection*{Results}
 Using our implementation we could produce the following images. see Figure ~\ref{fig:houghlines-origianl}, ~\ref{fig:houghlines-canny}, ~\ref{fig:houghlines-linesonly}, ~\ref{fig:houghlines-lines-and-canny}, and ~\ref{fig:houghlines-final}.
@@ -169,13 +180,13 @@ Using our implementation we could produce the following images. see Figure ~\ref
 
 \begin{figure}[h!]
 \includegraphics[width=0.4\paperwidth]{hough-lines/canny-image.jpg}
-\caption{Edge detection using \textit{canny algorithm} in ~\nameref{appendix:canny-main}}
+\caption{Edge detection using \textit{canny algorithm} in ~\nameref{imp:canny-main}}
 \label{fig:houghlines-canny}
 \end{figure}
 
 \begin{figure}[h!]
 \includegraphics[width=0.4\paperwidth]{hough-lines/linesonly-image.jpg}
-\caption{Lines detection using \textit{Hough Algorithm} in ~\nameref{appendix:hough-details}}
+\caption{Lines detection using \textit{Hough Algorithm} in ~\nameref{imp:hough-lines}}
 \label{fig:houghlines-linesonly}
 \end{figure}
 
@@ -191,7 +202,12 @@ Using our implementation we could produce the following images. see Figure ~\ref
 \label{fig:houghlines-final}
 \end{figure}
 
+\newpage
+\subsection{ Hough Circles Detection }
 
+
+
+\newpage
 
 \section*{Problem2: Active Contour Model}
 %----------------------------------------------------------------------------------------
@@ -201,11 +217,13 @@ Using our implementation we could produce the following images. see Figure ~\ref
 \bibliography{references.bib} % The file containing the bibliography
 
 \section*{Appendix }
-\subsection*{Canny Edge Detector Implementation in Python}\label{appendix:canny-main}\include{myCanny-main}
+\include{myCanny-main}
 
-\subsection*{Canny Edge Detector Subroutines in Python}\label{appendix:canny-details}\include{myCanny}
+\include{myCanny}
 
-\subsection*{Hough Lines Detection Implementation in Python}\label{appendix:hough-details}\include{myHoughLines}
+\include{myHoughLines}
+
+\include{myHoughCircles}
 
 \end{document}
 

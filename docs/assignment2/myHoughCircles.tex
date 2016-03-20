@@ -1,6 +1,5 @@
+\begin{lstlisting}[caption=Python implementation for Hough Circles Detection , label=imp:hough-circles]
 import numpy as np
-
-
 def myHoughCircles( binaryImage , threshold ) :
     maxRadius = int(np.sqrt(2)*max(binaryImage.shape)  )
     cartesianWidth = binaryImage.shape[ 1 ]
@@ -38,3 +37,4 @@ def myHoughCircles( binaryImage , threshold ) :
     circles = [ (col , row , r) for row , col , r in circles ]
 
     return circles
+\end{lstlisting}
