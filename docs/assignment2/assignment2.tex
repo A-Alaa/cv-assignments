@@ -24,6 +24,7 @@
 %\usepackage{caption}
 %\usepackage{subfigure}
 %\usepackage{subfloat}
+%\usepackage{subfig}
 
 \usepackage[tight,footnotesize]{subfigure}
 
@@ -77,16 +78,17 @@
 \definecolor{red}{RGB}{160,0,0}
 \definecolor{green}{RGB}{0,150,0}
 \definecolor{blue}{rgb}{0.0, 0.0, 0.99}	
+\definecolor{black}{rgb}{0.0, 0.0, 0.0}	
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 \lstset{language=Python, 
         basicstyle=\ttfamily\footnotesize, 
         backgroundcolor=\color{backcolour}, 
         keywordstyle=\color{keywords}\ttfamily,
-        commentstyle=\color{comments}\ttfamily,
+        commentstyle=\color{green}\ttfamily,
         stringstyle=\color{red}\ttfamily,
         showstringspaces=false,   
-        identifierstyle=\color{green}\ttfamily,
+        identifierstyle=\color{black}\ttfamily,
         procnamekeys={def,class}}
         
 \makeatletter
@@ -151,13 +153,43 @@ The general overview of line detection routine using \textit{Hough Transform}:
 \textit{Python} is used as a wrapper to perform matrix operations to perform edge detection and lines detection. \textit{OpenCV} is only used for verifying our results, loading/showing images, and drawing lines.
 
 
-\subsubsection*{Canny Edge Detection}
-The following snippet code shows the workflow of \textit{Canny edge detector}, the details of the invoked subroutines are provided in the ~\nameref{appendix:canny-details} 
-\include{myCanny-main}
+\subsection*{Canny Edge Detection}
+The snippet code provided in ~\nameref{appendix:canny-main} shows the workflow of \textit{Canny edge detector}, the details of the invoked subroutines are provided in the ~\nameref{appendix:canny-details} 
 
-\subsubsection*{ Hough Lines Detection }
+\subsection*{ Hough Lines Detection }
+Note that mathematical library \textit{numpy} is the only dependency in our implementation in \textit{python}. see ~\nameref{appendix:hough-details}
 
 \subsection*{Results}
+Using our implementation we could produce the following images. see Figure ~\ref{fig:houghlines-origianl}, ~\ref{fig:houghlines-canny}, ~\ref{fig:houghlines-linesonly}, ~\ref{fig:houghlines-lines-and-canny}, and ~\ref{fig:houghlines-final}.
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-lines/lines.jpg}
+\caption{Original image of interest.}
+\label{fig:houghlines-origianl}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-lines/canny-image.jpg}
+\caption{Edge detection using \textit{canny algorithm} in ~\nameref{appendix:canny-main}}
+\label{fig:houghlines-canny}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-lines/linesonly-image.jpg}
+\caption{Lines detection using \textit{Hough Algorithm} in ~\nameref{appendix:hough-details}}
+\label{fig:houghlines-linesonly}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-lines/lines-AND-canny-image.jpg}
+\caption{After performing bitwise AND operation between image in Figure ~\ref{fig:houghlines-canny} and image in Figure ~\ref{fig:houghlines-linesonly} to vanish excessive lines.}
+\label{fig:houghlines-lines-and-canny}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-lines/final-image.jpg}
+\caption{Final image after superimposing lines in Figure ~\ref{fig:houghlines-lines-and-canny} on the original image in ~\ref{fig:houghlines-origianl}. }
+\label{fig:houghlines-final}
+\end{figure}
 
 
 
@@ -169,10 +201,11 @@ The following snippet code shows the workflow of \textit{Canny edge detector}, t
 \bibliography{references.bib} % The file containing the bibliography
 
 \section*{Appendix }
-\subsection*{Canny Edge Detector Subroutines}\label{appendix:canny-details}
+\subsection*{Canny Edge Detector Implementation in Python}\label{appendix:canny-main}\include{myCanny-main}
 
-\include{myCanny}
+\subsection*{Canny Edge Detector Subroutines in Python}\label{appendix:canny-details}\include{myCanny}
 
+\subsection*{Hough Lines Detection Implementation in Python}\label{appendix:hough-details}\include{myHoughLines}
 
 \end{document}
 
