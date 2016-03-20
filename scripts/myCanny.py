@@ -24,43 +24,43 @@ def __cannyNonMaximumSupression__( gradientImage , phaseImage ) :
     # make a copy.
     thinEdgedImage = np.array(gradientImage , copy = True)
 
-    for row in range(gradientImage.shape[0]) :
-        for col in range(gradientImage.shape[1]) :
+    for row in range(1 , gradientImage.shape[ 0 ] - 1) :
+        for col in range(1 , gradientImage.shape[ 1 ] - 1) :
             # If already supressed, proceed to the next pixel.
-            if thinEdgedImage[row , col] == 0 :
+            if thinEdgedImage[ row , col ] == 0 :
                 continue
 
-            theta = phaseImage[row , col]
-            maxGradient = gradientImage[row , col];
+            theta = phaseImage[ row , col ]
+            maxGradient = gradientImage[ row , col ];
 
             if theta == 0 :
-                maxGradient = max([gradientImage[row , col - 1] ,
-                                   gradientImage[row , col] ,
-                                   gradientImage[row , col + 1]])
+                maxGradient = max([ gradientImage[ row , col - 1 ] ,
+                                    gradientImage[ row , col ] ,
+                                    gradientImage[ row , col + 1 ] ])
 
             elif theta == 45 :
-                maxGradient = max([gradientImage[row - 1 , col - 1] ,
-                                   gradientImage[row , col] ,
-                                   gradientImage[row + 1 , col + 1]])
+                maxGradient = max([ gradientImage[ row - 1 , col - 1 ] ,
+                                    gradientImage[ row , col ] ,
+                                    gradientImage[ row + 1 , col + 1 ] ])
 
 
             elif theta == 90 :
-                maxGradient = max([gradientImage[row - 1 , col] ,
-                                   gradientImage[row , col] ,
-                                   gradientImage[row + 1 , col]])
+                maxGradient = max([ gradientImage[ row - 1 , col ] ,
+                                    gradientImage[ row , col ] ,
+                                    gradientImage[ row + 1 , col ] ])
 
 
             elif theta == 135 :
-                maxGradient = max([gradientImage[row + 1 , col - 1] ,
-                                   gradientImage[row , col] ,
-                                   gradientImage[row - 1 , col + 1]])
+                maxGradient = max([ gradientImage[ row + 1 , col - 1 ] ,
+                                    gradientImage[ row , col ] ,
+                                    gradientImage[ row - 1 , col + 1 ] ])
             else :
                 print("Unexpected theta value")
                 print theta
                 exit(1)
 
-            if gradientImage[row , col] < maxGradient :
-                thinEdgedImage[row , col] = 0
+            if gradientImage[ row , col ] < maxGradient :
+                thinEdgedImage[ row , col ] = 0
 
     return thinEdgedImage
 
@@ -68,12 +68,12 @@ def __cannyNonMaximumSupression__( gradientImage , phaseImage ) :
 def __cannyDoubleThresholding__( image , minThreshold , maxThreshold ) :
     doubleThresholdImages = copy.deepcopy(image)
     image = doubleThresholdImages
-    for row in range(image.shape[0]) :
-        for col in range(image.shape[1]) :
-            if image[row , col] < minThreshold :
-                image[row , col] = 0.0
-            elif image[row , col] >= maxThreshold :
-                image[row , col] = 1.0
+    for row in range(image.shape[ 0 ]) :
+        for col in range(image.shape[ 1 ]) :
+            if image[ row , col ] < minThreshold :
+                image[ row , col ] = 0.0
+            elif image[ row , col ] >= maxThreshold :
+                image[ row , col ] = 1.0
 
     return doubleThresholdImages
 
@@ -81,28 +81,28 @@ def __cannyDoubleThresholding__( image , minThreshold , maxThreshold ) :
 def __cannyEdgeTracking__( images , maxThreshold , minThreshold ) :
     edgeTrackingImages = copy.deepcopy(images)
     image = edgeTrackingImages
-    for row in range(image.shape[0]) :
-        for col in range(image.shape[1]) :
+    for row in range(image.shape[ 0 ]) :
+        for col in range(image.shape[ 1 ]) :
 
-            if image[row , col] > maxThreshold :
-                image[row , col] = 1.0
+            if image[ row , col ] > maxThreshold :
+                image[ row , col ] = 1.0
 
-            elif image[row , col] < minThreshold :
-                image[row , col] = 0
+            elif image[ row , col ] < minThreshold :
+                image[ row , col ] = 0
 
             else :
-                maxGradient = max([[image[row - 1 , col - 1] ,
-                                    image[row - 1 , col] ,
-                                    image[row - 1 , col + 1] ,
-                                    image[row , col - 1] ,
-                                    image[row , col + 1] ,
-                                    image[row + 1 , col - 1] ,
-                                    image[row + 1 , col] ,
-                                    image[row + 1 , col + 1]]])
+                maxGradient = max([ [ image[ row - 1 , col - 1 ] ,
+                                      image[ row - 1 , col ] ,
+                                      image[ row - 1 , col + 1 ] ,
+                                      image[ row , col - 1 ] ,
+                                      image[ row , col + 1 ] ,
+                                      image[ row + 1 , col - 1 ] ,
+                                      image[ row + 1 , col ] ,
+                                      image[ row + 1 , col + 1 ] ] ])
                 if maxGradient >= maxThreshold :
-                    image[row , col] = maxThreshold
+                    image[ row , col ] = maxThreshold
                 else :
-                    image[row , col] = 0
+                    image[ row , col ] = 0
 
     return edgeTrackingImages
 
