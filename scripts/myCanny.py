@@ -1,15 +1,19 @@
 import numpy as np
-import cv2
-import copy
-
+from scipy.signal import convolve2d
 
 def __cannySmoothing__( img , ksize , sigma ) :
-    return cv2.GaussianBlur(img , (ksize , ksize) , sigma)
-
+    # Hard-coded Gaussian Kernel. order=3, sigma=1.
+    gaussianKernel1D = np.matrix([ 0.27406862 , 0.45186276 , 0.27406862])
+    gaussianKernel2D = gaussianKernel1D.transpose() * gaussianKernel1D
+    return convolve2d(img , gaussianKernel2D , mode='same')
 
 def __cannyEdgeDetection__( image , ksize ) :
-    sobelH = cv2.Sobel(image , -1 , 1 , 0 , ksize = ksize)
-    sobelV = cv2.Sobel(image , -1 , 0 , 1 , ksize = ksize)
+    sobelHKernel = np.array([ [ -1 , 0 , 1 ] ,
+                              [ -2 , 0 , 2 ] ,
+                              [ -1 , 0 , 1 ] ])
+
+    sobelH = convolve2d(image , sobelHKernel , mode='same')
+    sobelV = convolve2d(image , sobelHKernel.transpose(), mode='same')
 
     phaseImage = np.arctan2(sobelV , sobelH) * (180.0 / np.pi)
 
@@ -19,9 +23,7 @@ def __cannyEdgeDetection__( image , ksize ) :
     # return gradient magnitude image, phase image.
     return np.sqrt(sobelH * sobelH + sobelV * sobelV) , phaseImage
 
-
 def __cannyNonMaximumSupression__( gradientImage , phaseImage ) :
-    # make a copy.
     thinEdgedImage = np.array(gradientImage , copy = True)
 
     for row in range(1 , gradientImage.shape[ 0 ] - 1) :
@@ -37,36 +39,29 @@ def __cannyNonMaximumSupression__( gradientImage , phaseImage ) :
                 maxGradient = max([ gradientImage[ row , col - 1 ] ,
                                     gradientImage[ row , col ] ,
                                     gradientImage[ row , col + 1 ] ])
-
             elif theta == 45 :
                 maxGradient = max([ gradientImage[ row - 1 , col - 1 ] ,
                                     gradientImage[ row , col ] ,
                                     gradientImage[ row + 1 , col + 1 ] ])
-
-
             elif theta == 90 :
                 maxGradient = max([ gradientImage[ row - 1 , col ] ,
                                     gradientImage[ row , col ] ,
                                     gradientImage[ row + 1 , col ] ])
-
-
             elif theta == 135 :
                 maxGradient = max([ gradientImage[ row + 1 , col - 1 ] ,
                                     gradientImage[ row , col ] ,
                                     gradientImage[ row - 1 , col + 1 ] ])
             else :
-                print("Unexpected theta value")
-                print theta
-                exit(1)
+                print("Unexpected theta value");
+                print theta; exit(1);
 
             if gradientImage[ row , col ] < maxGradient :
                 thinEdgedImage[ row , col ] = 0
 
     return thinEdgedImage
 
-
 def __cannyDoubleThresholding__( image , minThreshold , maxThreshold ) :
-    doubleThresholdImages = copy.deepcopy(image)
+    doubleThresholdImages = np.matrix(image)
     image = doubleThresholdImages
     for row in range(image.shape[ 0 ]) :
         for col in range(image.shape[ 1 ]) :
@@ -77,9 +72,8 @@ def __cannyDoubleThresholding__( image , minThreshold , maxThreshold ) :
 
     return doubleThresholdImages
 
-
 def __cannyEdgeTracking__( images , maxThreshold , minThreshold ) :
-    edgeTrackingImages = copy.deepcopy(images)
+    edgeTrackingImages = np.matrix(images)
     image = edgeTrackingImages
     for row in range(image.shape[ 0 ]) :
         for col in range(image.shape[ 1 ]) :
@@ -106,7 +100,6 @@ def __cannyEdgeTracking__( images , maxThreshold , minThreshold ) :
 
     return edgeTrackingImages
 
-
 def myCanny( image , ksize , sigma , minThreshold , maxThreshold ) :
     # 1.Guassian Blurring.
     smoothedImage = __cannySmoothing__(image , ksize , sigma)
@@ -121,10 +114,8 @@ def myCanny( image , ksize , sigma , minThreshold , maxThreshold ) :
     doubleThresholdedImage = __cannyDoubleThresholding__(nmsImage ,
                                                          minThreshold ,
                                                          maxThreshold)
-
     # 5.Edge Tracking by Hysterysis.
     edgeTrackedImage = __cannyEdgeTracking__(doubleThresholdedImage ,
                                              maxThreshold ,
                                              minThreshold)
-
     return edgeTrackedImage

@@ -32,9 +32,7 @@ image_GRAY = cv2.normalize(image_GRAY , image_GRAY , 0 , 1 , cv2.NORM_MINMAX ,
 cannyImage = myCanny.myCanny(image_GRAY , 3 , 1.0 , 0.2 , 0.2)
 
 lines = myHoughLine.myHoughLines(cannyImage , np.pi / 180 , 200)
-#
-# lines = cv2.HoughLines(np.uint8(np.abs(cannyImage) * 255) , 1 ,
-#                              1 / np.pi , 50)
+
 linesOnlyDraft = np.zeros(image.shape , dtype = np.uint8)
 
 if lines is None :
@@ -50,9 +48,6 @@ for theta , rho in lines :
     x2 = int(x0 - 1000 * (-b))
     y2 = int(y0 - 1000 * (a))
     cv2.line(linesOnlyDraft , (x1 , y1) , (x2 , y2) , (0 , 255 , 0) , 2)
-
-
-
 
 linesOnlyImage = np.zeros(image.shape , dtype = np.uint8)
 
