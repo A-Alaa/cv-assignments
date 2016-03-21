@@ -2,26 +2,16 @@
 %2345678901234567890123456789012345678901234567890123456789012345678901234567890
 %        1         2         3         4         5         6         7         8
 
-\documentclass[letterpaper, 10 pt, conference ,onecolumn]{ieeeconf}  % Comment this line out if you need a4paper
+\documentclass[letterpaper, 12 pt, conference ,onecolumn]{ieeeconf}  % Comment this line out if you need a4paper
 
-
-%\documentclass[•]{•}4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
 
 \IEEEoverridecommandlockouts                              % This command is only needed if 
                                                           % you want to use the \thanks command
 
-\overrideIEEEmargins                                      % Needed to meet printer requirements.
+\overrideIEEEmargins                                      % Needed to 
 
-% See the \addtolength command later in the file to balance the column lengths
-% on the last page of the document
-
-% The following packages can be found on http:\\www.ctan.org
 \usepackage{graphics} % for pdf, bitmapped graphics files
-%\usepackage{epsfig} % for postscript graphics files
-%\usepackage{mathptmx} % assumes new font selection scheme installed
-%\usepackage{times} % assumes new font selection scheme installed
-%\usepackage{amsmath} % assumes amsmath package installed
-%\usepackage{amssymb}  % assumes amsmath package installed
+
 
 %-----------------------------------------------------------------------------
 % Correct bad hyphenation here
@@ -32,22 +22,7 @@
 % Graphics 
 %-----------------------------------------------------------------------------
 \usepackage{graphicx}
-%\usepackage{caption}
-%\usepackage{subfigure}
-%\usepackage{subfloat}
-
 \usepackage[tight,footnotesize]{subfigure}
-	
-
-%-----------------------------------------------------------------------------
-% Orange notes 
-%-----------------------------------------------------------------------------
-\usepackage{todonotes}
-
-%-----------------------------------------------------------------------------
-% Hidden comments
-%-----------------------------------------------------------------------------
-\usepackage{comment}
 
 %-----------------------------------------------------------------------------
 % footnote
@@ -58,16 +33,6 @@
 % Acronyms  
 %-----------------------------------------------------------------------------
 \usepackage[nolist]{acronym}
-
-
-%-----------------------------------------------------------------------------
-% In-text author's citation  
-%-----------------------------------------------------------------------------
-
-%-----------------------------------------------------------------------------
-% Strikethrough  
-%-----------------------------------------------------------------------------
-\usepackage{soul}
 
 %-----------------------------------------------------------------------------
 % Math
@@ -84,20 +49,10 @@
 % References
 %-----------------------------------------------------------------------------
 \usepackage{hyperref}
-
 \usepackage{color} 
-\definecolor{keywords}{RGB}{255,0,90}
-\definecolor{comments}{RGB}{0,0,113}
-\definecolor{red}{RGB}{160,0,0}
-\definecolor{green}{RGB}{0,150,0}
 \definecolor{blue}{rgb}{0.0, 0.0, 0.99}	
-\definecolor{black}{rgb}{0.0, 0.0, 0.0}	
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 
-\usepackage[procnames]{listings}
-
-\usepackage{caption}
 
 \include{InitializeAlgorithmPackage}
   
@@ -123,20 +78,19 @@
 }
 
 \title{
-Computer Vision Assignment 2
+Computer Vision SBE 404B: Assignment 2
 }
 
-%-----------------------------------------------------------------------------
-%\begin{acronym}
- 
-%\end{acronym}
 
 \author{
  Asem Abdelaziz,
  Mohamed Abdallah, 
  Taha Ali,
- Abdelrahman Sayed
+ Abdelrahman Sayed  
+ \thanks{Assignment is submitted to Dr. Ahmed Badawy, TA Eman Marzban, and TA Mohamed Hisham.}
 }
+
+
 
 \begin{document}
 
@@ -144,30 +98,24 @@ Computer Vision Assignment 2
 
 
 
-\section{Problem1: Hough Transform} 
+\section{Problem1: Hough Transform}
+\subsection*{Implementation Policy}\label{implementation-policy}
+
+\textit{Python} is used as a wrapper to perform matrix operations to perform edge detection and lines detection. \textit{OpenCV} is only used for verifying our results, loading/showing images, and drawing lines.
+ 
 \subsection{Line Detection} 
-
-
 The general overview of line detection routine using \textit{Hough Transform}:
 \begin{enumerate}
-
 \item Edge detection (eg. using \textit{Canny edge detector}).
 \item Mapping each edge point to the \textit{Hough space}.
 \item For each mapped point, vote for each candidate line passing through the point, by incrementing an accumulator array at the corresponding line; line is represented by $\theta$ and $\rho$ (i.e angle and distance, respectively).
 \item Extract the most candidate lines.
-
 \end{enumerate} 
-\subsection*{Implementation}
 
-\textit{Python} is used as a wrapper to perform matrix operations to perform edge detection and lines detection. \textit{OpenCV} is only used for verifying our results, loading/showing images, and drawing lines.
-
-
-\subsection*{Canny Edge Detection: Implementation} 
+\subsection*{Canny Edge Detection: Implementation}\label{canny-edge-detection}
 The snippet code provided in ~\nameref{imp:canny-main} shows the workflow of \textit{Canny edge detector}, the details of the invoked subroutines are provided in the ~\nameref{imp:canny-all}.
 
 \subsection*{Hough Lines Detection: Implementation }
-
-
 Note that mathematical library \textit{numpy} is the only dependency in our implementation in \textit{python}. see ~\nameref{imp:hough-lines}.
 
 \subsection*{Results}
@@ -196,18 +144,74 @@ Using our implementation we could produce the following images. see Figure ~\ref
 \label{fig:houghlines-lines-and-canny}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[h!]                                          
 \includegraphics[width=0.4\paperwidth]{hough-lines/final-image.jpg}
 \caption{Final image after superimposing lines in Figure ~\ref{fig:houghlines-lines-and-canny} on the original image in ~\ref{fig:houghlines-origianl}. }
 \label{fig:houghlines-final}
 \end{figure}
 
-\newpage
 \subsection{ Hough Circles Detection }
+                   
+The general overview of circle detection routine using \textit{Hough Transform}:
+\begin{enumerate}
+
+\item Edge detection (eg. using \textit{Canny edge detector}).
+\item Mapping each edge point to the \textit{Hough space}.
+\item For each mapped point, vote for each candidate circle passing through the point, by incrementing an accumulator array at the corresponding circles; circle is represented by $(x, y, \rho)$ (i.e center and radius, respectively).
+\item Extract the most candidate circles.                            
+\end{enumerate} 
 
 
+\subsection*{Canny Edge Detection: Implementation} 
+Same as ~\ref{canny-edge-detection}.
 
-\newpage
+\subsection*{Hough Circle Detection: Implementation }
+Note that mathematical library \textit{numpy} is the only dependency in our implementation in \textit{python}. see ~\nameref{imp:hough-circles}.
+
+\subsection*{Results}
+Using our implementation we could produce the following images. see Figure ~\ref{fig:houghlines-origianl}, ~\ref{fig:houghlines-canny}, ~\ref{fig:houghlines-linesonly}, ~\ref{fig:houghlines-lines-and-canny}, and ~\ref{fig:houghlines-final}.
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-circles/Apple2.jpg}
+\caption{Original Image of interest.}
+\label{fig:apple2}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-circles/apple2-canny.png}
+\caption{Edge detection using \textit{canny algorithm} in ~\nameref{imp:canny-main}.}
+\label{fig:apple2-canny}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-circles/apple2-circles.png}
+\caption{After applying \textit{hough circle algorithm} in ~\nameref{imp:hough-circles}.}
+\label{fig:apple2-circles}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-circles/Apple1.jpg}
+\caption{Original Image of interest.}
+\label{fig:apple1}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-circles/apple-canny.jpg}
+\caption{Edge detection using \textit{canny algorithm} in ~\nameref{imp:canny-main}}
+\label{fig:apple1-canny}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-circles/apple-circles1.jpg}
+\caption{After applying \textit{hough circle algorithm} in ~\nameref{imp:hough-circles}.}
+\label{fig:apple1-circles1}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{hough-circles/apple-circles1.jpg}
+\caption{After applying \textit{hough circle algorithm} in ~\nameref{imp:hough-circles}. Circles with R<50 pixel are excluded.}
+\label{fig:apple1-circles2}
+\end{figure}
 
 \section*{Problem2: Active Contour Model}
 %----------------------------------------------------------------------------------------
