@@ -213,7 +213,35 @@ Using our implementation we could produce the following images. see Figure ~\ref
 \label{fig:apple1-circles2}
 \end{figure}
 
-\section*{Problem2: Active Contour Model}
+\section{Problem2: Active Contour Model}
+\subsection{Implementation Policy}\label{implementation-policy}
+
+\textit{Python} is used as a wrapper to perform matrix operations for edge detection and lines detection. \textit{OpenCV} is only used for verifying our results, loading/showing images, and drawing lines.
+
+ 
+\subsection{Snake Shaping Forces} 
+In our implementation we employed three measures to control the snake contour. see ~\nameref{imp:snake}.
+\begin{enumerate}
+\item Elasticity Force: $ || mean(distance) - |P(i)-P(i-1)|^2 ||$.
+\item Curvature Force: $ || P(i-1) - 2P(i) + P(i+1) ||^2 $.
+\item External Force: $ - \nabla ( G * I(x,y) )$
+\end{enumerate} 
+
+
+\subsection{Results}
+The Figures in \ref{fig:snake-before} and \ref{fig:snake-after} show the initial contour plotted manually and the resultant contour after running our implementation in ~\nameref{imp:snake}.
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{snake/snake-before.jpg}
+\caption{Initial Contour before running the active contour algorithm in ~\nameref{imp:snake} }
+\label{fig:snake-before}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{snake/snake-results.jpg}
+\caption{Final Contour after running the active contour algorithm in ~\nameref{imp:snake} }
+\label{fig:snake-after}
+\end{figure}
+
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
@@ -229,5 +257,6 @@ Using our implementation we could produce the following images. see Figure ~\ref
 
 \include{myHoughCircles}
 
+\include{snake}
 \end{document}
 
