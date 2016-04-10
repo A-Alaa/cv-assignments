@@ -42,7 +42,7 @@ def getxy(event, x, y, flags, param):
 
 def startSnake( initialContour ):
     # alpha = 1, beta=1, gamma=1
-    snake = GreedySnake(2.5, 2.5, 0.05  , initialContour, imageGray)
+    snake = GreedySnake(4, 6 , 0.09  , initialContour, imageGray)
 
     cv2.namedWindow('snake-image',cv2.WINDOW_NORMAL)
     while( snake.iterate() >= 0 ) :
