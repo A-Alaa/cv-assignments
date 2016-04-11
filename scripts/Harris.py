@@ -26,15 +26,31 @@ class HarrisCorner :
 
     def __calcHarrisMat__(self):
         self.__findGradients__()
-
+        # M = SUM( 3X3 window )
         # H = det(M) - k*(trace(M))*(trace(M))
         # k = 0.04 <=> 0.06 , we will assume it is 0.05
         # det(M) = (Ix*Ix)*(Iy*Iy) - (Ix*Iy)*(Ix*Iy) ,  trace(M) = (Ix*Ix) + (Iy*Iy)
 
-        detOfMatrix = ( self.gradientX * self.gradientX ) * ( self.gradientY * self.gradientY ) - \
-            ( self.gradientX * self.gradientY ) * ( self.gradientX * self.gradientX )
+        window = cv2.getGaussianKernel( 3, 1 )
 
-        traceOfMatrix = ( self.gradientX * self.gradientX ) + ( self.gradientY * self.gradientY )
+        # window = np.array([ [ 1 , 1 , 1 ] ,
+        #                     [ 1 , 1 , 1 ] ,
+        #                     [ 1 , 1 , 1 ] ])
+
+        gradXSquared = self.gradientX * self.gradientX
+        gradYSquared = self.gradientY * self.gradientY
+        gradXgradY = self.gradientX * self.gradientY
+
+        # Calculate the summation of the window's value ( IxIx, IyIy, IxIy)
+
+        M_IxIx = convolve2d( gradXSquared, window, mode='same' )
+        M_IyIy = convolve2d( gradYSquared, window, mode='same' )
+        M_IxIy = convolve2d( gradXgradY, window, mode='same' )
+
+        # Calculate the |M|
+        detOfMatrix = ( M_IxIx * M_IyIy ) - ( M_IxIy * M_IxIy )
+        # Calculate the trace()
+        traceOfMatrix = M_IxIx + M_IyIy
 
         self.responseMat = detOfMatrix - 0.05 * traceOfMatrix * traceOfMatrix
 
