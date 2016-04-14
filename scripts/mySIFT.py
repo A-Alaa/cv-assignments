@@ -24,6 +24,7 @@ class mySIFT :
         phaseImage = np.arctan2( gradientY, gradientX) * (180.0 / np.pi)
         # divide the angle histogram to 36 bins
         self.phaseImage = ((10 * np.round(phaseImage / 10.0)) + 180) % 360
+        print self.phaseImage
         # print self.magnitude.shape
         # print self.phaseImage.shape
 
@@ -47,7 +48,12 @@ class mySIFT :
             gaussianKernel1D = cv2.getGaussianKernel(16, 1.5)
             gaussianKernel2D = gaussianKernel1D * gaussianKernel1D.transpose()
 
-            featureMagnitudeWeighted = featureMagnitude * gaussianKernel2D
+            gaussianKernel2DNormalized=gaussianKernel2D / np.amax(gaussianKernel2D)
+
+            print gaussianKernel2D
+            print gaussianKernel2DNormalized
+
+            featureMagnitudeWeighted = featureMagnitude * gaussianKernel2DNormalized
 
             featurePhase = self.phaseImage[ (row-8):(row+8) , (col-8):(col+8) ]
             featurePhase =  np.matrix( featurePhase , copy = True )
@@ -62,10 +68,10 @@ class mySIFT :
                         if featurePhase[i,j] == angle:
                             angleFrequency[index] += 1
                             gradients[index] += featureMagnitudeWeighted[i,j]
-
+                #   print "main",  np.amax(gradients)
             #featureMagnitudeMax = np.max(gradients)
             dominantAngle = np.argmax(gradients) * 10
-            print "dominant Angle for feature at corner " ,corner, "="  , dominantAngle
+            # print "dominant Angle for feature at corner " ,corner, "="  , dominantAngle
 
             # subtract the dominant angle from feature phase
             featurePhaseAdjusted = featurePhase - dominantAngle
@@ -112,14 +118,14 @@ class mySIFT :
                             for j in range(featurePhaseQuad.shape[1]):
                                 if featurePhaseQuad[i, j] == angle:
                                     featureVector[index] += featureMagnitudeWeightedQuad[i, j]
-
-                        featureDesc.append(featureVector)
-                    # print "Feature Vector", featureVector
-
+                        # normalize feature vector [ 0 ,1 ]
+                        featureVectorNormalized = featureVector / np.amax(featureVector)
+                        #print "Feature Vector", np.amax(featureVector)
+                        featureDesc.append(featureVectorNormalized)
 
             print "featureDesc" , featureDesc
             self.features.append(featureDesc)
-            #print len(featureDesc)
+            print len(featureDesc)
 
     def getSIFTDescriptors(self):
         self.__featureDescription__()
