@@ -88,7 +88,7 @@ class HarrisCorner:
                 imageSec = np.matrix( imageSec, copy= True )
                 maxIdx = imageSec.argmax()
                 rMax, cMax = np.unravel_index( maxIdx, imageSec.shape )
-                print rMax, cMax
+                # print rMax, cMax
                 rMax = row + rMax - halfWin
                 cMax = col + cMax - halfWin
                 corners.append((rMax, cMax))
@@ -100,32 +100,10 @@ class HarrisCorner:
         for itr in range( 1, self.cornerIndexsupressed.shape[0] ):
             currRow = self.cornerIndexsupressed[itr, 0]
             currCol = self.cornerIndexsupressed[itr, 1]
-            prevRow = self.cornerIndexsupressed[itr-1, 0]
-            prevCol = self.cornerIndexsupressed[itr-1, 1]
-            if( currRow != prevRow or currCol != prevCol ):
+            if( nonRedundCorners.count(( currRow, currCol )) == 0 ):
                 nonRedundCorners.append(( currRow, currCol ))
         self.cornerIndexsupressed = np.array( nonRedundCorners )
         return self.cornerIndexsupressed
-
-
-    # def __localMaxima__(self):
-    #     # Find the local Max in the window
-    #     for col in range(self.responseMat.shape[0]):
-    #         for row in range(self.responseMat.shape[1]):
-    #             try:
-    #                 maxNeighbor = max([[self.responseMat[row - 1, col - 1],
-    #                                     self.responseMat[row - 1, col],
-    #                                     self.responseMat[row - 1, col + 1],
-    #                                     self.responseMat[row, col - 1],
-    #                                     self.responseMat[row, col + 1],
-    #                                     self.responseMat[row + 1, col - 1],
-    #                                     self.responseMat[row + 1, col],
-    #                                     self.responseMat[row + 1, col + 1]]])
-    #                 if( maxNeighbor > self.responseMat[ row , col ]) :
-    #                     self.responseMat[ row , col ] = 0 ;
-    #             except:
-    #                 pass
-
 
 def getResponseMat(self):
     return self.responseMat
