@@ -21,7 +21,8 @@ class mySIFT :
         self.magnitude = np.sqrt( np.square(gradientX) + np.square(gradientY))
 
         phaseImage = np.arctan2( gradientY, gradientX) * (180.0 / np.pi)
-        self.phaseImage = (10 * np.round(phaseImage / 10.0)) + 180 ;
+        # divide the angle histogram to 36 bins
+        self.phaseImage = ((10 * np.round(phaseImage / 10.0)) + 180)
         print self.magnitude.shape
         print self.phaseImage.shape
 
@@ -46,16 +47,32 @@ class mySIFT :
             featurePhase = self.phaseImage[ (row-8):(row+8) , (col-8):(col+8) ]
             featurePhase =  np.matrix( featurePhase , copy = True )
 
-            # get the most  frequent  orientation
-            frequency = np.zeros(37)
+            # get the main orientation
+            angleFrequency = np.zeros(37)
+            dominantAngle = 0
+            gradients=np.zeros(37)
             for index in range(37):
-                angle = index * 10                                   #[10,20,30,40,........,360]
+                angle = index * 10                                   #[0 10,20,30,40,........,350]
                 for i in range(featurePhase.shape[0]):
-                        for j in range(featurePhase.shape[1]):
-                            if featurePhase[i,j] == angle :
-                                frequency[index] += 1
-            print frequency, np.max(frequency)
+                    for j in range(featurePhase.shape[1]):
+                        if featurePhase[i,j] == angle:
+                            angleFrequency[index] += 1
+                            gradients[index] += featureMagnitude[i,j]
 
+            # print angleFrequency
+            # print np.max(angleFrequency)
+            # dominantAngle=np.argmax(angleFrequency)*10
+            # print dominantAngle
+
+            print gradients
+            featureMagnitudeMax = np.max(gradients)
+            dominantAngle = np.argmax(gradients) * 10
+            print dominantAngle
+            print featureMagnitudeMax
+
+            # subtract the dominant angle from feature phase
+            featurePhase = featurePhase - dominantAngle
+            print featurePhase
 
             gaussianKernel1D = cv2.getGaussianKernel( 16 , 1.5 )
             gaussianKernel2D = gaussianKernel1D * gaussianKernel1D.transpose()
