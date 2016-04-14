@@ -10,7 +10,8 @@ class mySIFT :
         self.magnitude = []
         self.phaseImage = []
         self.__calculateGradients__()
-        self.featres = []
+        self.features = []
+
     def __calculateGradients__( self ):
         sobelHKernel = np.array([[-1, 0, 1],
                                  [-2, 0, 2],
@@ -53,7 +54,6 @@ class mySIFT :
 
             # get the main orientation
             angleFrequency = np.zeros(36)
-            dominantAngle = 0
             gradients=np.zeros(36)
             for index in range(36):
                 angle = index * 10                                   #[0 10,20,30,40,........,350]
@@ -63,35 +63,65 @@ class mySIFT :
                             angleFrequency[index] += 1
                             gradients[index] += featureMagnitudeWeighted[i,j]
 
-            featureMagnitudeMax = np.max(gradients)
+            #featureMagnitudeMax = np.max(gradients)
             dominantAngle = np.argmax(gradients) * 10
-            print "dominat Angle" , dominantAngle
+            print "dominant Angle for feature at corner " ,corner, "="  , dominantAngle
 
             # subtract the dominant angle from feature phase
             featurePhaseAdjusted = featurePhase - dominantAngle
 
             # Down sampling the 36-bin to 8-bin
             featurePhase8Bin = ((45 * np.round(featurePhaseAdjusted / 45.0)) ) % 360
-            print featurePhase8Bin.shape
-            print featureMagnitudeWeighted.shape
+            #print featurePhase8Bin.shape
+            #print featureMagnitudeWeighted.shape
+
 
             # get gradients magnitude for each 4*4 region
-            # test first quad
-            featurePhaseQuad = featurePhase8Bin[0:4 , 0:4]
-            featureMagnitudeWeightedQuad=featureMagnitudeWeighted[0:4 , 0:4]
-            print featureMagnitudeWeightedQuad
-            print featurePhaseQuad
+            # all possible cases for 4*4 region
+            # featurePhaseQuad1 = featurePhase8Bin[0:4 , 0:4]
+            # featurePhaseQuad2 = featurePhase8Bin[0:4, 4:8]
+            # featurePhaseQuad1 = featurePhase8Bin[0:4, 8:12]
+            # featurePhaseQuad2 = featurePhase8Bin[0:4, 12:16]
+            #
+            # featurePhaseQuad1 = featurePhase8Bin[4:8, 0:4]
+            # featurePhaseQuad2 = featurePhase8Bin[4:8, 4:8]
+            # featurePhaseQuad1 = featurePhase8Bin[4:8, 8:12]
+            # featurePhaseQuad2 = featurePhase8Bin[4:8, 12:16]
+            #
+            # featurePhaseQuad1 = featurePhase8Bin[8:12, 0:4]
+            # featurePhaseQuad2 = featurePhase8Bin[8:12, 4:8]
+            # featurePhaseQuad1 = featurePhase8Bin[8:12, 8:12]
+            # featurePhaseQuad2 = featurePhase8Bin[8:12, 12:16]
+            #
+            # featurePhaseQuad1 = featurePhase8Bin[12:16, 0:4]
+            # featurePhaseQuad2 = featurePhase8Bin[12:16, 4:8]
+            # featurePhaseQuad1 = featurePhase8Bin[12:16, 8:12]
+            # featurePhaseQuad2 = featurePhase8Bin[12:16, 12:16]
+
+            featureDesc = []
+            for i in range(0,13,4):
+                for k in range(0,4):
+                    featurePhaseQuad = featurePhase8Bin[i:i+4 , 4*k: 4*(k+1)]
+                    featureMagnitudeWeightedQuad=featureMagnitudeWeighted[i:i+4 , 4*k: 4*(k+1)]
+                    #print featureMagnitudeWeightedQuad
+                    #print featurePhaseQuad
+                    featureVector = np.zeros(8)
+                    for index in range(8):
+                        angle = index * 45  # [0  45 90 135 ... 315]
+                        for i in range(featurePhaseQuad.shape[0]):
+                            for j in range(featurePhaseQuad.shape[1]):
+                                if featurePhaseQuad[i, j] == angle:
+                                    featureVector[index] += featureMagnitudeWeightedQuad[i, j]
+
+                        featureDesc.append(featureVector)
+                    # print "Feature Vector", featureVector
 
 
-            featureGradients = np.zeros(8)
-            for index in range(8):
-                angle = index * 45  # [0  45 90 135 ... 315]
-                for i in range(featurePhaseQuad.shape[0]):
-                    for j in range(featurePhaseQuad.shape[1]):
-                        if featurePhaseQuad[i, j] == angle:
-                            gradients[index] += featureMagnitudeWeighted[i, j]
-
-            print featureGradients
+            print "featureDesc" , featureDesc
+            self.features.append(featureDesc)
+            #print len(featureDesc)
 
     def getSIFTDescriptors(self):
         self.__featureDescription__()
+        print len(self.features)
+        print self.features
