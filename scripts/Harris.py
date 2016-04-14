@@ -4,7 +4,6 @@ from scipy.signal import convolve2d
 import scipy.ndimage.filters as filters
 
 
-
 class HarrisCorner:
     def __init__(self, sigma, image):
         self.sigma = sigma
@@ -14,8 +13,8 @@ class HarrisCorner:
         self.gradientY = []
         self.cornerIndex = []
         self.cornerIndexsupressed = []
-        self.responseMat = []
-        self.cornersImage = np.zeros(image.shape,np.uint8)
+        self.responseMat = np.zeros(image.shape)
+        self.cornersImage = np.zeros(image.shape)
 
     def __findGradients__(self):
         # Calulate the Gradient of the image in X,Y directions
@@ -37,7 +36,6 @@ class HarrisCorner:
         # det(M) = (Ix*Ix)*(Iy*Iy) - (Ix*Iy)*(Ix*Iy) ,  trace(M) = (Ix*Ix) + (Iy*Iy)
         gaussianKernel1D = cv2.getGaussianKernel(3, self.sigma)
         window = gaussianKernel1D * gaussianKernel1D.transpose()
-
         # window = np.array([ [ 1 , 1 , 1 ] ,
         #                     [ 1 , 1 , 1 ] ,
         #                     [ 1 , 1 , 1 ] ])
@@ -48,28 +46,28 @@ class HarrisCorner:
 
         # Calculate the summation of the window's value ( IxIx, IyIy, IxIy)
 
-        M_IxIx = convolve2d(gradXSquared, window, mode='same')
-        M_IyIy = convolve2d(gradYSquared, window, mode='same')
-        M_IxIy = convolve2d(gradXgradY, window, mode='same')
+        mIxIx = convolve2d(gradXSquared, window, mode='same')
+        mIyIy = convolve2d(gradYSquared, window, mode='same')
+        mIxIy = convolve2d(gradXgradY, window, mode='same')
 
         # Calculate the |M|
-        detOfMatrix = (M_IxIx * M_IyIy) - (M_IxIy * M_IxIy)
+        detOfMatrix = (mIxIx * mIyIy) - (mIxIy * mIxIy)
         # Calculate the trace()
-        traceOfMatrix = M_IxIx + M_IyIy
+        traceOfMatrix = mIxIx + mIyIy
 
         self.responseMat = detOfMatrix - 0.05 * traceOfMatrix * traceOfMatrix
         # self.responseMat = detOfMatrix / ( traceOfMatrix * traceOfMatrix )
 
     def findCorners(self, threshold):
         self.__calcHarrisMat__()
-
+        # self.__localMaxima__()
         corners = []
         for row in range(self.responseMat.shape[0]):
             for col in range(self.responseMat.shape[1]):
                 if self.responseMat[row][col] >= threshold:
                     corners.append((row, col))
-                    self.cornersImage[row][col] = 255
-        cv2.imshow("shit", self.cornersImage)
+                    self.cornersImage[row][col] = self.responseMat[row, col]
+        # cv2.imshow("shit", self.cornersImage)
         # cv2.waitKey(0)
         # for row in range( self.responseMat.shape[0] ):
         #     for col in range( self.responseMat.shape[1] ):
@@ -77,28 +75,57 @@ class HarrisCorner:
         #             corners.append(( row, col ))
 
         self.cornerIndex = np.array(corners)
-        print self.cornerIndex.shape
-        return self.cornerIndex
-
-    def localMaxima(self, windowSize=7):
+        # return self.cornerIndex
+    def localMaxima(self, windowSize):
         # Find the local Max in the window windowSize
-        # cornersMax = filters.minimum_filter( self.cornersImage, 1 )
-        # self.supressedCorners = (self.cornersImage==cornersMax)
-        # cornersMax = filters.minimum_filter( self.cornersImage, 1 )
-        # self.supressedCorners = (self.cornersImage==cornersMax)
-        kernel = np.ones((3,3),np.uint8)
-
-        self.supressedCorners = cv2.erode( self.cornersImage, kernel, iterations=2 )
-        cv2.imshow("shit2", self.supressedCorners)
+        imageRow = self.cornersImage.shape[0]
+        imageCol = self.cornersImage.shape[1]
+        halfWin = int( windowSize/2 )
         corners = []
-        for row in range(self.supressedCorners.shape[0]):
-            for col in range(self.supressedCorners.shape[1]):
-                if self.supressedCorners[row][col] !=0 :
-                    corners.append((row, col))
-
+        for (row, col) in self.cornerIndex:
+            if (row > halfWin+1 and row < (imageRow - halfWin-1) and col > halfWin+1 and col < (imageCol -halfWin-1) ):
+                imageSec = self.cornersImage[ (row-halfWin) : (row+halfWin) , (col-halfWin) : (col+halfWin) ]
+                imageSec = np.matrix( imageSec, copy= True )
+                maxIdx = imageSec.argmax()
+                rMax, cMax = np.unravel_index( maxIdx, imageSec.shape )
+                print rMax, cMax
+                rMax = row + rMax - halfWin
+                cMax = col + cMax - halfWin
+                corners.append((rMax, cMax))
+                # print imageSec
         self.cornerIndexsupressed = np.array(corners)
 
+        # Remove Redundant Corners, that appear in local Maximum suppression
+        nonRedundCorners = []
+        for itr in range( 1, self.cornerIndexsupressed.shape[0] ):
+            currRow = self.cornerIndexsupressed[itr, 0]
+            currCol = self.cornerIndexsupressed[itr, 1]
+            prevRow = self.cornerIndexsupressed[itr-1, 0]
+            prevCol = self.cornerIndexsupressed[itr-1, 1]
+            if( currRow != prevRow or currCol != prevCol ):
+                nonRedundCorners.append(( currRow, currCol ))
+        self.cornerIndexsupressed = np.array( nonRedundCorners )
         return self.cornerIndexsupressed
 
-    def getResponseMat(self):
-        return self.responseMat
+
+    # def __localMaxima__(self):
+    #     # Find the local Max in the window
+    #     for col in range(self.responseMat.shape[0]):
+    #         for row in range(self.responseMat.shape[1]):
+    #             try:
+    #                 maxNeighbor = max([[self.responseMat[row - 1, col - 1],
+    #                                     self.responseMat[row - 1, col],
+    #                                     self.responseMat[row - 1, col + 1],
+    #                                     self.responseMat[row, col - 1],
+    #                                     self.responseMat[row, col + 1],
+    #                                     self.responseMat[row + 1, col - 1],
+    #                                     self.responseMat[row + 1, col],
+    #                                     self.responseMat[row + 1, col + 1]]])
+    #                 if( maxNeighbor > self.responseMat[ row , col ]) :
+    #                     self.responseMat[ row , col ] = 0 ;
+    #             except:
+    #                 pass
+
+
+def getResponseMat(self):
+    return self.responseMat
