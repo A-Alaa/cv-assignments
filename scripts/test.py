@@ -14,3 +14,4 @@ features=m.getSIFTDescriptors()
 print "No of features descriptors " ,len(features) , "of size : " , len(features[0])
 print "Feature 1 descriptor " ,features[0]
 print "Feature 2 descriptor " ,features[1]
+print "Feature 3 descriptor " ,features[2]

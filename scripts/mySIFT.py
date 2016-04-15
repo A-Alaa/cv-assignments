@@ -56,44 +56,42 @@ class mySIFT :
             featurePhase = self.phaseImage[ (row-8):(row+8) , (col-8):(col+8) ]
             featurePhase =  np.matrix( featurePhase , copy = True )
 
-            # 4- get the main orientation of the patch
-            angleFrequency = np.zeros(36)
-            gradients=np.zeros(36)
-            for angleIndex in range(36):
-                angle = angleIndex * 10                                   #[0 10,20,30,40,........,350]
-                for i in range(featurePhase.shape[0]):
-                    for j in range(featurePhase.shape[1]):
-                        if featurePhase[i,j] == angle:
-                            angleFrequency[angleIndex] += 1
-                            gradients[angleIndex] += featureMagnitudeWeighted[i,j]
-
-            dominantAngle = np.argmax(gradients) * 10
-            print "Dominant Angle for feature at corner " ,corner, "="  , dominantAngle
+            # 4- get the main orientation of the patch at max gradient magnitude
+            gradientMagnitudes = self.__getGradientsMagnitudes_(featurePhase,featureMagnitudeWeighted,36)
+            dominantAngle = np.argmax(gradientMagnitudes) * 10
+            print "Dominant Angle for feature at corner ", corner, "=", dominantAngle
 
             #5- subtract the dominant angle from feature phase
             featurePhaseAdjusted = featurePhase - dominantAngle
-
             #6- Down sampling the 36-bin to 8-bin
             featurePhase8Bin = ((45 * np.round(featurePhaseAdjusted / 45.0)) ) % 360
 
             #7- get gradient for angle histogram (8 bins)
             featureDesc = []
-            for i in range(0,13,4):
-                for k in range(0,4):
-                    featurePhaseQuad = featurePhase8Bin[i:i+4 , 4*k: 4*(k+1)]
-                    featureMagnitudeWeightedQuad=featureMagnitudeWeighted[i:i+4 , 4*k: 4*(k+1)]
-                    featureVector = np.zeros(8)
-                    for angleIndex in range(8):
-                        angle = angleIndex * 45  # [0  45 90 135 ... 315]
-                        for r in range(featurePhaseQuad.shape[0]):
-                            for c in range(featurePhaseQuad.shape[1]):
-                                if featurePhaseQuad[r, c] == angle:
-                                    featureVector[angleIndex] += featureMagnitudeWeightedQuad[r, c]
-                        featureDesc.append(featureVector[angleIndex])
+            for i in range(0, 13, 4):
+                for k in range(0, 4):
+                    featurePhaseQuad = featurePhase8Bin[i:i + 4, 4 * k: 4 * (k + 1)]
+                    featureMagnitudeWeightedQuad = featureMagnitudeWeighted[i:i + 4, 4 * k: 4 * (k + 1)]
+                    featureVector = self.__getGradientsMagnitudes_(featurePhaseQuad, featureMagnitudeWeightedQuad, 8)
+                    featureDesc = featureDesc + featureVector
 
-            # normalize each feature desriptor to 1
             featureDesc /= max(featureDesc)
             self.features.append(featureDesc)
+
+    def __getGradientsMagnitudes_(self,phase,magnitude,bins):
+        size = 360/bins
+        anglesFrequency = np.zeros(bins)
+        gradients = np.zeros(bins)
+        gradientMagnitudes=[]
+        for angleIndex in range(bins):
+            angle = angleIndex * size  # [0 10,20,30,40,........,350]
+            for r in range(phase.shape[0]):
+                for c in range(phase.shape[1]):
+                    if phase[r, c] == angle:
+                        anglesFrequency[angleIndex] += 1
+                        gradients[angleIndex] += magnitude[r, c]
+            gradientMagnitudes.append(gradients[angleIndex])
+        return gradientMagnitudes
 
     def getSIFTDescriptors(self):
         self.__featureDescription__()
