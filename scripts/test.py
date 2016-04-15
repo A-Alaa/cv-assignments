@@ -8,11 +8,9 @@ sys.path.append('../scripts')
 
 from mySIFT import mySIFT
 
-x = np.array(  [[1,2,3,4 ] , [2,4,5,6] , [3,7,8,9], [13,17,18,19]] )
-i=0
-y = x[(i+1):3,(i+1):3]
-
-corners = [(20,20),(50,50)]
-
-m = mySIFT( imageGray , corners )
-m.getSIFTDescriptors()
+m = mySIFT( imageGray , [(20,20),(50,50),(70,60)] )
+# features of size no*features * feature-desc
+features=m.getSIFTDescriptors()
+print "No of features descriptors " ,len(features) , "of size : " , len(features[0])
+print "Feature 1 descriptor " ,features[0]
+print "Feature 2 descriptor " ,features[1]
