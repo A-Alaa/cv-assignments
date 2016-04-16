@@ -67,12 +67,6 @@ class HarrisCorner:
                 if self.responseMat[row][col] >= threshold:
                     corners.append((row, col))
                     self.cornersImage[row][col] = self.responseMat[row, col]
-        # cv2.imshow("shit", self.cornersImage)
-        # cv2.waitKey(0)
-        # for row in range( self.responseMat.shape[0] ):
-        #     for col in range( self.responseMat.shape[1] ):
-        #         if self.responseMat[row][col] > (threshold/((threshold+1)*(threshold+1))):
-        #             corners.append(( row, col ))
 
         self.cornerIndex = np.array(corners)
         # return self.cornerIndex

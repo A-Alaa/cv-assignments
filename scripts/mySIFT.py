@@ -56,30 +56,31 @@ class mySIFT :
             featurePhase = self.phaseImage[ (row-8):(row+8) , (col-8):(col+8) ]
             featurePhase =  np.matrix( featurePhase , copy = True )
 
-            # 4- get the main orientation of the patch at max gradient magnitude
+            # 4- Get the main orientation of the patch at max gradient magnitude
             gradientMagnitudes = self.__getGradientsMagnitudes__(featurePhase,featureMagnitudeWeighted,36)
 
-            dominantAngle = np.argmax(gradientMagnitudes) * 10 # gets index of angle so we multiply by 10 to get the angle
+            dominantAngle = np.argmax(gradientMagnitudes) * 10 # Get index of angle so we multiply by 10 to get the corresponding angle
             print "Dominant Angle for feature at corner ", corner, "=", dominantAngle
 
-            #5- subtract the dominant angle from feature phase
+            #5- Subtract the dominant angle from feature phase
             featurePhaseAdjusted = featurePhase - dominantAngle
             #6- Down sampling the 36-bin to 8-bin
             featurePhase8Bin = ((45 * np.round(featurePhaseAdjusted / 45.0)) ) % 360
 
-            #7- get gradient for angle histogram (8 bins)
+            #7- Get gradient for angle histogram (8 bins)
             featureDesc = []
             for i in range(0, 13, 4):
                 for k in range(0, 4):
                     featurePhaseQuad = featurePhase8Bin[i:i + 4, 4 * k: 4 * (k + 1)]
                     featureMagnitudeWeightedQuad = featureMagnitudeWeighted[i:i + 4, 4 * k: 4 * (k + 1)]
                     featureVector = self.__getGradientsMagnitudes__(featurePhaseQuad, featureMagnitudeWeightedQuad, 8)
-                    featureDesc = featureDesc + featureVector       #+ operator  conactinates two vectors
+                    featureDesc = featureDesc + featureVector       # the plus  operator  concatinates two vectors
 
-            featureDesc /= max(featureDesc)
+            if max(featureDesc) != 0:
+                 featureDesc /= max(featureDesc)
             self.features.append(featureDesc)
 
-
+    # Get maximum gradient at defined angles
     def __getGradientsMagnitudes__(self, phase, magnitude, bins):
         gradientMagnitudes1 = []
         angles = range(0, 360, 360/bins)  # [0 10 20 30,,,,,,,,350] or [0 45 90 .......315]
