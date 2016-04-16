@@ -24,10 +24,18 @@ imageGray = cv2.imread('../images/assignment2/Regular-Shapes.jpg', 0)
 #
 # cv2.imshow("image", imageGrayMax)
 
+# get current time before harris
+start = cv2.getTickCount()
 
 harrisCorners = HarrisCorner( 0.5, imageGray )
 harrisCorners.findCorners( 100000 )
 cornerIndex = harrisCorners.localMaxima( 19)
+# get current time after harris
+end = cv2.getTickCount()
+
+time = (end - start)/ cv2.getTickFrequency()
+print "Time taken by harris" , time , "seconds"
+
 
 print imageGray.shape, cornerIndex.shape
 # print cornerIndex
