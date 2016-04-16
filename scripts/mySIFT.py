@@ -57,8 +57,9 @@ class mySIFT :
             featurePhase =  np.matrix( featurePhase , copy = True )
 
             # 4- get the main orientation of the patch at max gradient magnitude
-            gradientMagnitudes = self.__getGradientsMagnitudes_(featurePhase,featureMagnitudeWeighted,36)
-            dominantAngle = np.argmax(gradientMagnitudes) * 10
+            gradientMagnitudes = self.__getGradientsMagnitudes__(featurePhase,featureMagnitudeWeighted,36)
+
+            dominantAngle = np.argmax(gradientMagnitudes) * 10 # gets index of angle so we multiply by 10 to get the angle
             print "Dominant Angle for feature at corner ", corner, "=", dominantAngle
 
             #5- subtract the dominant angle from feature phase
@@ -72,26 +73,21 @@ class mySIFT :
                 for k in range(0, 4):
                     featurePhaseQuad = featurePhase8Bin[i:i + 4, 4 * k: 4 * (k + 1)]
                     featureMagnitudeWeightedQuad = featureMagnitudeWeighted[i:i + 4, 4 * k: 4 * (k + 1)]
-                    featureVector = self.__getGradientsMagnitudes_(featurePhaseQuad, featureMagnitudeWeightedQuad, 8)
-                    featureDesc = featureDesc + featureVector
+                    featureVector = self.__getGradientsMagnitudes__(featurePhaseQuad, featureMagnitudeWeightedQuad, 8)
+                    featureDesc = featureDesc + featureVector       #+ operator  conactinates two vectors
 
             featureDesc /= max(featureDesc)
             self.features.append(featureDesc)
 
-    def __getGradientsMagnitudes_(self,phase,magnitude,bins):
-        size = 360/bins
-        anglesFrequency = np.zeros(bins)
-        gradients = np.zeros(bins)
-        gradientMagnitudes=[]
-        for angleIndex in range(bins):
-            angle = angleIndex * size  # [0 10,20,30,40,........,350]
-            for r in range(phase.shape[0]):
-                for c in range(phase.shape[1]):
-                    if phase[r, c] == angle:
-                        anglesFrequency[angleIndex] += 1
-                        gradients[angleIndex] += magnitude[r, c]
-            gradientMagnitudes.append(gradients[angleIndex])
-        return gradientMagnitudes
+
+    def __getGradientsMagnitudes__(self, phase, magnitude, bins):
+        gradientMagnitudes1 = []
+        angles = range(0, 360, 360/bins)  # [0 10 20 30,,,,,,,,350] or [0 45 90 .......315]
+        for angle in angles:
+            indices = np.where(phase == angle)
+            gradients = np.sum(magnitude[indices])
+            gradientMagnitudes1.append(gradients)
+        return gradientMagnitudes1
 
     def getSIFTDescriptors(self):
         self.__featureDescription__()
