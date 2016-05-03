@@ -94,7 +94,7 @@ def __cannyEdgeTracking__( images , maxThreshold , minThreshold ) :
                                       image[ row + 1 , col ] ,
                                       image[ row + 1 , col + 1 ] ] ])
                 if maxGradient >= maxThreshold :
-                    image[ row , col ] = maxThreshold
+                    image[ row , col ] = 1.0
                 else :
                     image[ row , col ] = 0
 
