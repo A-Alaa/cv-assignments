@@ -11,10 +11,10 @@ imageFiles = [join("../images/assignment4" , f) for f in
               listdir("../images/assignment4") if
               isfile(join("../images/assignment4" , f))]
 
-image = cv2.imread(imageFiles[3])
-image = cv2.cvtColor( image , cv2.COLOR_RGB2Luv  )
+image = cv2.imread(imageFiles[12])
+# image = cv2.cvtColor( image , cv2.COLOR_RGB2Luv  )
 
-labels , centroids , wss = KmeansSegmentation( image , 3  )
+labels , centroids , wss = KmeansSegmentation( image , 4  )
 
 centers = np.uint8( centroids )
 output  = centers[ labels.flatten() ]
