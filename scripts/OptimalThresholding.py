@@ -6,6 +6,7 @@ import copy
 # to be thresholded and threshold it using
 # optimal thresholding method
 # returns optimal threshold , thresholded image
+
 def optimal_thresholding(image):
     rows = image.shape[0]
     cols = image.shape[1]
@@ -14,24 +15,33 @@ def optimal_thresholding(image):
     background_mean = np.mean(background)
     # Extract initial foreground (object)
     foreground_sum = np.sum(image) - np.sum(background)
-    foreground_mean = foreground_sum / (np.size(image) - 4)
+    foreground_mean = foreground_sum / (np.size(image) - len(background))
     thresh = (background_mean + foreground_mean) / 2
 
     while True:
         old_thresh = thresh
-        new_foreground = image[np.where(image > thresh)]
+        new_foreground = image[np.where(image >= thresh)]
         new_background = image[np.where(image < thresh)]
-        thresh = (np.mean(new_background) + np.mean(new_foreground)) / 2
+        if new_background.size:
+            new_background_mean = np.mean(new_background)
+        else:
+            new_background_mean = 0
+        if new_foreground.size:
+            new_foreground_mean = np.mean(new_foreground)
+        else:
+            new_foreground_mean = 0
+
+        thresh = (new_background_mean + new_foreground_mean) / 2
         if old_thresh == thresh:
             break
 
-    bwImage = copy.deepcopy(image)
+    binary_image = copy.deepcopy(image)
     # convert the image to black and white image
-    for r in range(0, image.shape[0]):
-        for c in range(0, image.shape[1]):
-            if image[r, c] > thresh:
-                bwImage[r, c] = 255
+    for r in range(0, rows):
+        for c in range(0, cols):
+            if image[r, c] >= thresh:
+                binary_image[r, c] = 255
             else:
-                bwImage[r, c] = 0
-    return bwImage, thresh
+                binary_image[r, c] = 0
+    return binary_image, thresh
 

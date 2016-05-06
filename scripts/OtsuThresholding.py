@@ -9,7 +9,7 @@ import copy
 # to be thresholded and threshold it using
 # otsu thresholding method
 # returns otsu threshold , thresholded image
-def otsuThresholding(image):
+def otsu_thresholding(image):
     imageSize =  np.size(image)
     # 1 - Calculate Histogram of image
     grayLevels = range(0,256)
@@ -32,27 +32,32 @@ def otsuThresholding(image):
                 backgroundHist.append(histogram[level])
             # calculate weight of backgound
             wb = float(sum(backgroundHist)) / imageSize
-            if wb:  meanb = np.sum(np.multiply(backgroundGrayLevels, np.asarray(backgroundHist))) / float(sum(backgroundHist))
+            # mean of background
+            if wb:
+                meanb = np.sum(np.multiply(backgroundGrayLevels, np.asarray(backgroundHist))) / float(sum(backgroundHist))
 
         if len(foregroundGrayLevels):
             for level in foregroundGrayLevels:
                 foregroundHist.append(histogram[level])
             # calculate weight of foreground
             wf = float(sum(foregroundHist)) / imageSize
-            if wf: meanf = np.sum(np.multiply(foregroundGrayLevels, np.asarray(foregroundHist))) / float(sum(foregroundHist))
+            if wf:
+                meanf = np.sum(np.multiply(foregroundGrayLevels, np.asarray(foregroundHist))) / float(sum(foregroundHist))
         # get between class variance at current lelvel
         betweenClassVariance.append(wb * wf * math.pow(meanb - meanf, 2))
-
+    print betweenClassVariance
     # 3 - Get maximum gray level corresponding to maximum betweenClassVariance
-    otsuThreshold = betweenClassVariance.index(max(betweenClassVariance))
-
-    bwImage = copy.deepcopy(image)
+    maxbetweenClassVariance = np.max(betweenClassVariance)
+    maxCorrespondingLevels = np.where(np.asarray(betweenClassVariance) == maxbetweenClassVariance)
+    otsuThreshold = np.max(maxCorrespondingLevels)
+    print otsuThreshold
+    binary_image = copy.deepcopy(image)
     # convert the image to black and white image
     for r in range(0, image.shape[0]):
         for c in range(0, image.shape[1]):
-            if image[r, c] > otsuThreshold:
-                bwImage[r, c] = 255
+            if image[r, c] >= otsuThreshold:
+                binary_image[r, c] = 255
             else:
-                bwImage[r, c] = 0
+                binary_image[r, c] = 0
 
-    return  bwImage, otsuThreshold
+    return  binary_image, otsuThreshold
