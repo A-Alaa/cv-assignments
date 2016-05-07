@@ -8,22 +8,24 @@ sys.path.append('../scripts')
 
 from hisMeanShift import meanShiftSeg
 
-imagePath = "../images/assignment4/seg2.jpg"
+imagePath = "../images/assignment4/RevolutionJan25.jpg"
 
 imageRGB = cv2.imread( imagePath )
 
-imageLUV = cv2.cvtColor( imageRGB, cv2.COLOR_BGR2Luv )
+imageLUV = cv2.cvtColor( imageRGB, cv2.COLOR_RGB2LUV )
 
-imageLUV2RGB = cv2.cvtColor( imageLUV, cv2.COLOR_Luv2BGR )
+imageLUV2RGB = cv2.cvtColor( imageLUV, cv2.COLOR_LUV2RGB )
 
 meanShift = meanShiftSeg( imageLUV, 1 )
 
-segImage = meanShift.applyMeanShift
+segImage = meanShift.applyMeanShift()
 
-tShit = meanShift.getSegmentedImage
-print  type(tShit)
-
-# cv2.imshow( 'image', imageLUV2RGB )
+# tShit = meanShift.getSegmentedImage
+# print  type(tShit)
+print type(segImage)
+print np.shape(segImage)
+segImage = cv2.cvtColor( segImage, cv2.COLOR_LUV2RGB )
+cv2.imshow( 'image', segImage )
 # print type( imageLUV ), np.shape( imageLUV ), imageLUV.max(), imageLUV.min()
 #
 # featureVec = imageLUV.reshape( -1 ,3 )
