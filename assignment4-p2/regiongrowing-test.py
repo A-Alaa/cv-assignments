@@ -12,8 +12,8 @@ imageFiles = [ join("../images/assignment4" , f) for f in
                listdir("../images/assignment4") if
                isfile(join("../images/assignment4" , f)) ]
 
-image = cv2.imread(imageFiles[12] , 0)
-coloredImage = cv2.imread( imageFiles[12] )
+image = cv2.imread(imageFiles[1] , 0)
+coloredImage = cv2.imread( imageFiles[1] )
 
 print image.shape , image.dtype
 print coloredImage.shape , coloredImage.dtype
