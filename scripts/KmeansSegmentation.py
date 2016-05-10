@@ -40,7 +40,7 @@ def KmeansSegmentation( image , nclusters , experiments = 3 , threshold = 0 ,
                 newCentroid = np.mean(cluster , axis = 0)
                 wss[ experiment ] += \
                     np.sum(np.linalg.norm(cluster - newCentroid ,
-                                          axis = 1 , keepdims = True ))
+                                          axis = 1 ), keepdims = True )
 
                 centroids[ centroidIdx ] = newCentroid
 
