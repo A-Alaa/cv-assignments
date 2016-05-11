@@ -326,7 +326,11 @@ Using our implementation of local otsu thresholding we could produce the followi
 \section{Part2: Segmentation}
 
 \subsection*{K-means segmentation}
-This type of segmentation is based on the traditional k-means clustering algorithm. In this k-means implementations, we cluster the image RGB components in the RGB color-space. 
+This type of segmentation is based on the traditional k-means clustering algorithm. In this k-means implementations, we cluster the image RGB components in the RGB color-space. \\
+labels , centroids , wss = KmeansSegmentation( image , 4  )
+\\
+This function performs the kmeans in image for 4 clusters. It returns centroids, labels and the within-sum of squares
+
 
 \subsubsection*{\textbf{Results}}  
 
@@ -339,9 +343,12 @@ Here are some of the results, in figure \ref{fig:Xray-kmean-4}
 \end{figure}
 
 \subsection*{Regional Growing segmentation}
-This type of segmentation is based on the Regional Growing segmentation algorithm. In this  implementations, we cluster the image RGB components in the RGB color-space. The colors used to identify regions are chosen randomly.
+This type of segmentation is based on the Regional Growing segmentation algorithm. In this  implementations, we cluster the image RGB components in the RGB color-space. The colors used to identify regions are chosen randomly.\\
 
-\subsubsection*{\textbf{Results}}  
+segmentedImage = RegionGrowingSegmentation(image)
+\\
+This function returns the segmented image of 'image'. The user select the region to be highlighted using the mouse pointer
+\subsubsection*{textbf{Results}}  
 
 Here are some of the results, in figure \ref{fig:regional-growing}
 \begin{figure}[h!]
@@ -353,7 +360,12 @@ Here are some of the results, in figure \ref{fig:regional-growing}
 
 \subsection*{Mean Shift segmentation}
 This type of segmentation is based on the Mean-shift segmentation algorithm. In this  implementations, we cluster the image RGB components in the UV color-space and the GB color-space.
-
+\\
+meanShift = meanShiftSeg( imageRGB, 7 )
+\\This the instantiation of the mean-shift object, with the image either in RGB form or LUV. The other parameter is the window dim 
+\\
+segImage = meanShift.applyMeanShift()
+\\The function applyShift(), perform the mean-shift on the clusters, then return the segmented image
 
 \subsubsection*{\textbf{Results}}  
 
