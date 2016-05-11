@@ -1,0 +1,931 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.6)  11 MAY 2016 22:16
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**assignment4.tex
+(./assignment4.tex
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+(./ieeeconf.cls
+
+LaTeX Warning: You have requested document class `ieeeconf',
+               but the document class provides `cssconf'.
+
+Document Class: cssconf 2004/1/15 revision V1.6b by Pradeep Misra
+\@IEEEtrantmpdimenA=\dimen102
+\@IEEEtrantmpdimenB=\dimen103
+\@IEEEtrantmpcountA=\count79
+\@IEEEtrantmpcountB=\count80
+\@IEEEtrantmptoksA=\toks14
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 794.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+** ATTENTION: Single column mode is not normally used with IEEE publications.
+\@IEEEnormalsizefontbaselineskip=\skip41
+-- This is a 12 point document.
+\normalsizebaselineskip=\skip42
+\normaljot=\skip43
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1113.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1113.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1113.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1113.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1113.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1113.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1113.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1113.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1113.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1113.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1113.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <14> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1113.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1113.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1113.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <22> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1113.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <22> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1113.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1113.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1113.
+
+\IEEEilabelindentA=\dimen104
+\IEEEilabelindentB=\dimen105
+\IEEEilabelindent=\dimen106
+\IEEEelabelindent=\dimen107
+\IEEEdlabelindent=\dimen108
+\labelindent=\dimen109
+\IEEEiednormlabelsep=\dimen110
+\IEEEiedmathlabelsep=\dimen111
+\IEEEiedtopsep=\skip44
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@IEEEsubequation=\count85
+\abovecaptionskip=\skip45
+\belowcaptionskip=\skip46
+\c@figure=\count86
+\c@table=\count87
+\@IEEEeqnnumcols=\count88
+\@IEEEeqncolcnt=\count89
+\@IEEEtmpitemindent=\dimen112
+\c@biography=\count90
+\@IEEEtranrubishbin=\box26
+)
+** ATTENTION: Overriding command lockouts (line 8).
+** ATTENTION: Overriding IEEE standard margins (line 11).
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count91
+))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+\Gin@req@height=\dimen113
+\Gin@req@width=\dimen114
+)
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+
+
+Package subfigure Warning: Your document class has a bad definition
+ of \endfigure, most likely
+ \let\endfigure=\end@float
+ which has now been changed to
+ \def\endfigure{\end@float}
+ because otherwise subsequent changes to \end@float
+ (like done by several packages changing float behaviour)
+ can't take effect on \endfigure.
+ Please complain to your document class author.
+
+
+Package subfigure Warning: Your document class has a bad definition
+ of \endtable, most likely
+ \let\endtable=\end@float
+ which has now been changed to
+ \def\endtable{\end@float}
+ because otherwise subsequent changes to \end@float
+ (like done by several packages changing float behaviour)
+ can't take effect on \endtable.
+ Please complain to your document class author.
+
+\subfigtopskip=\skip47
+\subfigcapskip=\skip48
+\subfigcaptopadj=\dimen115
+\subfigbottomskip=\skip49
+\subfigcapmargin=\dimen116
+\subfiglabelskip=\skip50
+\c@subfigure=\count92
+\c@lofdepth=\count93
+\c@subtable=\count94
+\c@lotdepth=\count95
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip51
+\subfig@bottom=\skip52
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mdwtools/footnote.sty
+Package: footnote 1997/01/28 1.13 Save footnotes around boxes
+\fn@notes=\box27
+\fn@width=\dimen117
+)
+(/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
+Package: acronym 2012/10/29 v1.38 Support for acronyms (Tobias Oetiker)
+
+(/usr/share/texlive/texmf-dist/tex/latex/bigfoot/suffix.sty
+Package: suffix 2006/07/15 1.5 Variant command support
+)
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
+\@xs@message=\write3
+\integerpart=\count96
+\decimalpart=\count97
+)
+Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
+)
+\AC@clearlist=\toks16
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip53
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks17
+\ex@=\dimen118
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen119
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count98
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count99
+\leftroot@=\count100
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count101
+\DOTSCASE@=\count102
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen120
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count103
+\c@MaxMatrixCols=\count104
+\dotsspace@=\muskip10
+\c@parentequation=\count105
+\dspbrk@lvl=\count106
+\tag@help=\toks18
+\row@=\count107
+\column@=\count108
+\maxfields@=\count109
+\andhelp@=\toks19
+\eqnshift@=\dimen121
+\alignsep@=\dimen122
+\tagshift@=\dimen123
+\tagwidth@=\dimen124
+\totwidth@=\dimen125
+\lineht@=\dimen126
+\@envbody=\toks20
+\multlinegap=\skip54
+\multlinetaggap=\skip55
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen127
+\Hy@linkcounter=\count110
+\Hy@pagecounter=\count111
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count112
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count113
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen128
+\Fld@menulength=\count114
+\Field@Width=\dimen129
+\Fld@charsize=\dimen130
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count115
+\c@Item=\count116
+\c@Hfootnote=\count117
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count118
+\c@bookmark@seq@number=\count119
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip56
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+Package color Info: Redefining color blue on input line 53.
+
+\@input{InitializeAlgorithmPackage.aux}
+\openout2 = `InitializeAlgorithmPackage.aux'.
+
+(./InitializeAlgorithmPackage.tex
+Package color Info: Redefining color red on input line 3.
+Package color Info: Redefining color green on input line 4.
+Package color Info: Redefining color black on input line 5.
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count120
+\lst@gtempboxa=\box30
+\lst@token=\toks22
+\lst@length=\count121
+\lst@currlwidth=\dimen131
+\lst@column=\count122
+\lst@pos=\count123
+\lst@lostspace=\dimen132
+\lst@width=\dimen133
+\lst@newlines=\count124
+\lst@lineno=\count125
+\lst@maxwidth=\dimen134
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+\c@lstnumber=\count126
+\lst@skipnumbers=\count127
+\lst@framebox=\box31
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2013/08/26 1.5b listings configuration
+))
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen135
+\captionmargin@=\dimen136
+\captionwidth=\dimen137
+\caption@tempdima=\dimen138
+\caption@indent=\dimen139
+\caption@parindent=\dimen140
+\caption@hangindent=\dimen141
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2->\ifx \@captype \@IEEEta
+blestring \begin {center}{\footnotesize #1}\\{\footnotesize \scshape #2}\end {c
+enter}\@IEEEtablecaptionsepspace \else \@IEEEfigurecaptionsepspace \setbox \@te
+mpboxa \hbox {\footnotesize #1.~~ #2}\ifdim \wd \@tempboxa >\hsize \setbox \@te
+mpboxa \hbox {\footnotesize #1.~~ }\parbox [t]{\hsize }{\footnotesize \noindent
+ \unhbox \@tempboxa #2}\else \ifcenterfigcaptions \hbox to\hsize {\footnotesize
+ \hfil \box \@tempboxa \hfil }\else \hbox to\hsize {\footnotesize \box \@tempbo
+xa \hfil }\fi \fi \fi .
+\c@ContinuedFloat=\count128
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: subfigure package is loaded.
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2013/08/26 1.5b listings language file
+))
+Package hyperref Info: Option `colorlinks' set `true' on input line 78.
+Package hyperref Info: Option `breaklinks' set `true' on input line 78.
+
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 78.
+
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 78.
+(./assignment4.aux
+
+LaTeX Warning: Label `fig:MRI-original-image' multiply defined.
+
+
+LaTeX Warning: Label `fig:MRI-original-image' multiply defined.
+
+
+LaTeX Warning: Label `fig:MRI-original-image' multiply defined.
+
+
+LaTeX Warning: Label `fig:mean-shift-4' multiply defined.
+
+)
+\openout1 = `assignment4.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+ (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count129
+\scratchdimen=\dimen142
+\scratchbox=\box32
+\nofMPsegments=\count130
+\nofMParguments=\count131
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count132
+\MPscratchDim=\dimen143
+\MPnumerator=\count133
+\makeMPintoPDFobject=\count134
+\everyMPtoPDFconversion=\toks24
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\AtBeginShipoutBox=\box33
+Package hyperref Info: Link coloring ON on input line 95.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count135
+)
+LaTeX Info: Redefining \ref on input line 95.
+LaTeX Info: Redefining \pageref on input line 95.
+LaTeX Info: Redefining \nameref on input line 95.
+
+(./assignment4.out) (./assignment4.out)
+\@outlinefile=\write4
+\openout4 = `assignment4.out'.
+
+\c@lstlisting=\count136
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Try loading font information for U+msa on input line 98.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 98.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+<images/optimal-thresholding/global/hand-original-image.jpg, id=12, 321.2pt x 2
+40.9pt>
+File: images/optimal-thresholding/global/hand-original-image.jpg Graphic file (
+type jpg)
+ <use images/optimal-thresholding/global/hand-original-image.jpg>
+Package pdftex.def Info: images/optimal-thresholding/global/hand-original-image
+.jpg used on input line 125.
+(pdftex.def)             Requested size: 245.71425pt x 184.29156pt.
+
+<images/optimal-thresholding/global/hand-global-threshold.jpg, id=13, 321.2pt x
+ 240.9pt>
+File: images/optimal-thresholding/global/hand-global-threshold.jpg Graphic file
+ (type jpg)
+ <use images/optimal-thresholding/global/hand-global-threshold.jpg>
+Package pdftex.def Info: images/optimal-thresholding/global/hand-global-thresho
+ld.jpg used on input line 132.
+(pdftex.def)             Requested size: 245.71425pt x 184.29156pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/optimal-thresholding/global/MRI-original-image.jpg, id=14, 513.92pt x 5
+13.92pt>
+File: images/optimal-thresholding/global/MRI-original-image.jpg Graphic file (t
+ype jpg)
+ <use images/optimal-thresholding/global/MRI-original-image.jpg>
+Package pdftex.def Info: images/optimal-thresholding/global/MRI-original-image.
+jpg used on input line 142.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/optimal-thresholding/global/MRI-global-threshold.jpg, id=15, 513.92pt x
+ 513.92pt>
+File: images/optimal-thresholding/global/MRI-global-threshold.jpg Graphic file 
+(type jpg)
+ <use images/optimal-thresholding/global/MRI-global-threshold.jpg>
+Package pdftex.def Info: images/optimal-thresholding/global/MRI-global-threshol
+d.jpg used on input line 149.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[1
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/optimal-threshold
+ing/global/hand-original-image.jpg>]
+File: images/optimal-thresholding/global/MRI-original-image.jpg Graphic file (t
+ype jpg)
+
+<use images/optimal-thresholding/global/MRI-original-image.jpg>
+Package pdftex.def Info: images/optimal-thresholding/global/MRI-original-image.
+jpg used on input line 167.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/optimal-thresholding/local/MRI-local-threshold16.jpg, id=45, 513.92pt x
+ 513.92pt>
+File: images/optimal-thresholding/local/MRI-local-threshold16.jpg Graphic file 
+(type jpg)
+ <use images/optimal-thresholding/local/MRI-local-threshold16.jpg>
+Package pdftex.def Info: images/optimal-thresholding/local/MRI-local-threshold1
+6.jpg used on input line 174.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/optimal-thresholding/local/MRI-local-threshold32.jpg, id=46, 513.92pt x
+ 513.92pt>
+File: images/optimal-thresholding/local/MRI-local-threshold32.jpg Graphic file 
+(type jpg)
+ <use images/optimal-thresholding/local/MRI-local-threshold32.jpg>
+Package pdftex.def Info: images/optimal-thresholding/local/MRI-local-threshold3
+2.jpg used on input line 182.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/optimal-thresholding/local/MRI-local-threshold64.jpg, id=47, 513.92pt x
+ 513.92pt>
+File: images/optimal-thresholding/local/MRI-local-threshold64.jpg Graphic file 
+(type jpg)
+ <use images/optimal-thresholding/local/MRI-local-threshold64.jpg>
+Package pdftex.def Info: images/optimal-thresholding/local/MRI-local-threshold6
+4.jpg used on input line 190.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/optimal-thresholding/local/MRI-local-threshold128.jpg, id=48, 513.92pt 
+x 513.92pt>
+File: images/optimal-thresholding/local/MRI-local-threshold128.jpg Graphic file
+ (type jpg)
+ <use images/optimal-thresholding/local/MRI-local-threshold128.jpg>
+Package pdftex.def Info: images/optimal-thresholding/local/MRI-local-threshold1
+28.jpg used on input line 198.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/optimal-thresholding/local/MRI-local-threshold256.jpg, id=49, 513.92pt 
+x 513.92pt>
+File: images/optimal-thresholding/local/MRI-local-threshold256.jpg Graphic file
+ (type jpg)
+ <use images/optimal-thresholding/local/MRI-local-threshold256.jpg>
+Package pdftex.def Info: images/optimal-thresholding/local/MRI-local-threshold2
+56.jpg used on input line 206.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[2 <./images/optimal-thresholding/global/hand-global-threshold.jpg> <./images/o
+ptimal-thresholding/global/MRI-original-image.jpg>] [3 <./images/optimal-thresh
+olding/global/MRI-global-threshold.jpg>] [4 <./images/optimal-thresholding/loca
+l/MRI-local-threshold16.jpg> <./images/optimal-thresholding/local/MRI-local-thr
+eshold32.jpg>]
+<images/otsu-thresholding/global/Beads.jpg, id=86, 788.9475pt x 592.2125pt>
+File: images/otsu-thresholding/global/Beads.jpg Graphic file (type jpg)
+
+<use images/otsu-thresholding/global/Beads.jpg>
+Package pdftex.def Info: images/otsu-thresholding/global/Beads.jpg used on inpu
+t line 240.
+(pdftex.def)             Requested size: 245.71425pt x 184.44243pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/otsu-thresholding/global/Beads-global-otsu.jpg, id=87, 788.9475pt x 592
+.2125pt>
+File: images/otsu-thresholding/global/Beads-global-otsu.jpg Graphic file (type 
+jpg)
+ <use images/otsu-thresholding/global/Beads-global-otsu.jpg>
+Package pdftex.def Info: images/otsu-thresholding/global/Beads-global-otsu.jpg 
+used on input line 247.
+(pdftex.def)             Requested size: 245.71425pt x 184.44243pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+File: images/optimal-thresholding/global/MRI-original-image.jpg Graphic file (t
+ype jpg)
+<use images/optimal-thresholding/global/MRI-original-image.jpg>
+Package pdftex.def Info: images/optimal-thresholding/global/MRI-original-image.
+jpg used on input line 256.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/otsu-thresholding/global/MRI-global-threshold-otsu.jpg, id=88, 513.92pt
+ x 513.92pt>
+File: images/otsu-thresholding/global/MRI-global-threshold-otsu.jpg Graphic fil
+e (type jpg)
+
+<use images/otsu-thresholding/global/MRI-global-threshold-otsu.jpg>
+Package pdftex.def Info: images/otsu-thresholding/global/MRI-global-threshold-o
+tsu.jpg used on input line 263.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[5 <./images/optimal-thresholding/local/MRI-local-threshold64.jpg> <./images/op
+timal-thresholding/local/MRI-local-threshold128.jpg>]
+File: images/optimal-thresholding/global/MRI-original-image.jpg Graphic file (t
+ype jpg)
+
+<use images/optimal-thresholding/global/MRI-original-image.jpg>
+Package pdftex.def Info: images/optimal-thresholding/global/MRI-original-image.
+jpg used on input line 281.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/otsu-thresholding/local/MRI-local-threshold-otsu16.jpg, id=104, 513.92p
+t x 513.92pt>
+File: images/otsu-thresholding/local/MRI-local-threshold-otsu16.jpg Graphic fil
+e (type jpg)
+
+<use images/otsu-thresholding/local/MRI-local-threshold-otsu16.jpg>
+Package pdftex.def Info: images/otsu-thresholding/local/MRI-local-threshold-ots
+u16.jpg used on input line 288.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/otsu-thresholding/local/MRI-local-threshold-otsu32.jpg, id=105, 513.92p
+t x 513.92pt>
+File: images/otsu-thresholding/local/MRI-local-threshold-otsu32.jpg Graphic fil
+e (type jpg)
+
+<use images/otsu-thresholding/local/MRI-local-threshold-otsu32.jpg>
+Package pdftex.def Info: images/otsu-thresholding/local/MRI-local-threshold-ots
+u32.jpg used on input line 296.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/otsu-thresholding/local/MRI-local-threshold-otsu64.jpg, id=106, 513.92p
+t x 513.92pt>
+File: images/otsu-thresholding/local/MRI-local-threshold-otsu64.jpg Graphic fil
+e (type jpg)
+
+<use images/otsu-thresholding/local/MRI-local-threshold-otsu64.jpg>
+Package pdftex.def Info: images/otsu-thresholding/local/MRI-local-threshold-ots
+u64.jpg used on input line 304.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/otsu-thresholding/local/MRI-local-threshold-otsu128.jpg, id=107, 513.92
+pt x 513.92pt>
+File: images/otsu-thresholding/local/MRI-local-threshold-otsu128.jpg Graphic fi
+le (type jpg)
+
+<use images/otsu-thresholding/local/MRI-local-threshold-otsu128.jpg>
+Package pdftex.def Info: images/otsu-thresholding/local/MRI-local-threshold-ots
+u128.jpg used on input line 312.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/otsu-thresholding/local/MRI-local-threshold-otsu256.jpg, id=108, 513.92
+pt x 513.92pt>
+File: images/otsu-thresholding/local/MRI-local-threshold-otsu256.jpg Graphic fi
+le (type jpg)
+
+<use images/otsu-thresholding/local/MRI-local-threshold-otsu256.jpg>
+Package pdftex.def Info: images/otsu-thresholding/local/MRI-local-threshold-ots
+u256.jpg used on input line 320.
+(pdftex.def)             Requested size: 245.71425pt x 245.71425pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6 <./images/optimal-thresholding/local/MRI-local-threshold256.jpg> <./images/o
+tsu-thresholding/global/Beads.jpg>]
+<images/kmeans/kmean-4.png, id=121, 1236.62pt x 700.6175pt>
+File: images/kmeans/kmean-4.png Graphic file (type png)
+
+<use images/kmeans/kmean-4.png>
+Package pdftex.def Info: images/kmeans/kmean-4.png used on input line 335.
+(pdftex.def)             Requested size: 245.71425pt x 139.21231pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<images/regional-growing/regional-growing.png, id=123, 1269.74374pt x 724.7075p
+t>
+File: images/regional-growing/regional-growing.png Graphic file (type png)
+ <use images/regional-growing/regional-growing.png>
+Package pdftex.def Info: images/regional-growing/regional-growing.png used on i
+nput line 348.
+(pdftex.def)             Requested size: 245.71425pt x 140.23923pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7 <./images/otsu-thresholding/global/Beads-global-otsu.jpg>]
+<images/mean-shift/window128-4cluster.png, id=137, 562.1pt x 243.91125pt>
+File: images/mean-shift/window128-4cluster.png Graphic file (type png)
+
+<use images/mean-shift/window128-4cluster.png>
+Package pdftex.def Info: images/mean-shift/window128-4cluster.png used on input
+ line 362.
+(pdftex.def)             Requested size: 245.71425pt x 106.62158pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/mean-shift/mean-shift-rgb-4.png, id=139, 553.06625pt x 205.76875pt>
+File: images/mean-shift/mean-shift-rgb-4.png Graphic file (type png)
+
+<use images/mean-shift/mean-shift-rgb-4.png>
+Package pdftex.def Info: images/mean-shift/mean-shift-rgb-4.png used on input l
+ine 369.
+(pdftex.def)             Requested size: 245.71425pt x 91.41765pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/mean-shift/window32-64cluster.png, id=140, 562.1pt x 243.91125pt>
+File: images/mean-shift/window32-64cluster.png Graphic file (type png)
+
+<use images/mean-shift/window32-64cluster.png>
+Package pdftex.def Info: images/mean-shift/window32-64cluster.png used on input
+ line 376.
+(pdftex.def)             Requested size: 245.71425pt x 106.62158pt.
+
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the US letter (8.5in X 11in) paper size.
+
+
+Package caption Warning: Unused \captionsetup[lstlisting] on input line 38.
+See the caption package documentation for explanation.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 383.
+[8 <./images/otsu-thresholding/global/MRI-global-threshold-otsu.jpg>] [9 <./ima
+ges/otsu-thresholding/local/MRI-local-threshold-otsu16.jpg> <./images/otsu-thre
+sholding/local/MRI-local-threshold-otsu32.jpg>] [10 <./images/otsu-thresholding
+/local/MRI-local-threshold-otsu64.jpg> <./images/otsu-thresholding/local/MRI-lo
+cal-threshold-otsu128.jpg>] [11 <./images/otsu-thresholding/local/MRI-local-thr
+eshold-otsu256.jpg> <./images/kmeans/kmean-4.png> <./images/regional-growing/re
+gional-growing.png>] [12 <./images/mean-shift/window128-4cluster.png> <./images
+/mean-shift/mean-shift-rgb-4.png> <./images/mean-shift/window32-64cluster.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 383.
+(./assignment4.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 383.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 383.
+Package rerunfilecheck Info: File `assignment4.out' has not changed.
+(rerunfilecheck)             Checksum: C93A4405DA0A26FDFED4DA0F38C37CED;56.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 383.
+ ) 
+Here is how much of TeX's memory you used:
+ 9475 strings out of 493304
+ 148731 string characters out of 6139872
+ 260971 words of memory out of 5000000
+ 12714 multiletter control sequences out of 15000+600000
+ 38813 words of font info for 86 fonts, out of 8000000 for 9000
+ 960 hyphenation exceptions out of 8191
+ 40i,7n,42p,384b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
+/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on assignment4.pdf (12 pages, 1821899 bytes).
+PDF statistics:
+ 217 PDF objects out of 1000 (max. 8388607)
+ 168 compressed objects within 2 object streams
+ 67 named destinations out of 1000 (max. 500000)
+ 119 words of extra memory for PDF output out of 10000 (max. 10000000)
+

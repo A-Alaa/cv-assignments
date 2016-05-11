@@ -32,7 +32,7 @@ class meanShiftSeg:
         compU = np.reshape( self.image[:,:,1], (-1,1) )
         compV = np.reshape( self.image[:,:,2], (-1,1) )
         compUV = np.transpose(np.array((compU[:,0],compV[:,0])))
-        print compU.shape, compV.shape, compUV.shape
+        # print compU.shape, compV.shape, compUV.shape
         # self.colorSpace[ compU,compV ] = 1
         for u,v in compUV :
                 # print (u, v)
@@ -63,6 +63,8 @@ class meanShiftSeg:
 
         self.clustersUV = np.array( clustersTemp )
         print " Clusters formed "
+        print "Clusters Centers : "
+        print self.clustersUV
         self.__classifyColors__()
 
         return self.segmentedImage
@@ -121,9 +123,9 @@ class meanShiftSeg:
                     # print self.clustersUV.shape
                     # exit(1)
                     # print windowIdx
-                    self.segmentedImage[row,col,1] = self.clustersUV[windowIdx, 1]
-                    self.segmentedImage[row,col,2] = self.clustersUV[windowIdx, 0]
-                    self.segmentedImage[row,col,0] = self.image[row,col,0]
+                    self.segmentedImage[row,col,1] = self.clustersUV[windowIdx, 0]
+                    self.segmentedImage[row,col,2] = self.clustersUV[windowIdx, 1]
+                    # self.segmentedImage[row,col,0] = self.image[row,col,0]
 
 
 
