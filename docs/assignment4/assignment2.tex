@@ -1,0 +1,327 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 12 pt, conference ,onecolumn]{ieeeconf}  % Comment this line out if you need a4paper
+
+
+\IEEEoverridecommandlockouts                              % This command is only needed if 
+                                                          % you want to use the \thanks command
+
+\overrideIEEEmargins                                      % Needed to 
+
+\usepackage{graphics} % for pdf, bitmapped graphics files
+
+
+%-----------------------------------------------------------------------------
+% Correct bad hyphenation here
+%-----------------------------------------------------------------------------
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+%-----------------------------------------------------------------------------
+% Graphics 
+%-----------------------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage[tight,footnotesize]{subfigure}
+
+%-----------------------------------------------------------------------------
+% footnote
+%-----------------------------------------------------------------------------
+\usepackage{footnote}
+
+%-----------------------------------------------------------------------------
+% Acronyms  
+%-----------------------------------------------------------------------------
+\usepackage[nolist]{acronym}
+
+%-----------------------------------------------------------------------------
+% Math
+%-----------------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%-----------------------------------------------------------------------------
+% Set the default folder for images
+%-----------------------------------------------------------------------------
+\graphicspath{{images/}} 
+
+%-----------------------------------------------------------------------------
+% References
+%-----------------------------------------------------------------------------
+\usepackage{hyperref}
+\usepackage{color} 
+\definecolor{blue}{rgb}{0.0, 0.0, 0.99}	
+
+
+
+\include{InitializeAlgorithmPackage}
+  
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\hypersetup{
+	colorlinks = true, 
+	breaklinks = true, 
+	bookmarks = true,
+	bookmarksnumbered,
+	urlcolor = blue, 
+	linkcolor = blue, 
+	citecolor = blue, 
+	linktoc=page, 
+	pdftitle={}, 
+	pdfauthor={\textcopyright Author}, 
+	pdfsubject={}, 
+	pdfkeywords={}, 
+	pdfcreator={pdfLaTeX}, % PDF Creator
+	pdfproducer={IEEE} 
+}
+
+\title{
+Computer Vision SBE 404B: Assignment 4
+}
+
+
+\author{
+ Asem Abdelaziz,
+ Mohamed Abdallah, 
+ Taha Ali,
+ Abdelrahman Sayed  
+ \thanks{Assignment is submitted to Dr. Ahmed Badawy, TA Eman Marzban, and TA Mohamed Hisham.}
+}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\section*{Part1: Thresholding}
+\subsection*{Implementation Policy}\label{implementation-policy}
+
+\textit{Python} is used as a wrapper to perform matrix operations for edge detection and lines detection. \textit{OpenCV} is only used for verifying our results, loading/showing images, and drawing lines.
+ 
+\subsection*{Optimal Thresholding} 
+The general overview of thresholding  using \textit{Optimal Thresholding}:
+\begin{enumerate}
+\item Extracting initial background and initial foreground.
+\item Calculating the mean of both background and foreground.
+\item Calculating average mean between background and foreground(\textit{Threshold})
+\item Repeat until threshold(t+1) = threshold(t).
+\item if pixel intensity $\geq$ Threshold then pixel intensity = 255 else pixel intensity = 0
+\end{enumerate} 
+
+\section*{Global Optimal Thresholding: Implementation}
+The globalOptimalThresholding function takes the input image to be thresholded using \textit{Optimal Thresholding} and returns the thresholded image and optimal threshold.
+
+
+\subsection*{\textbf{Results}}
+Using our implementation of global optimal thresholding we could produce the following images. see Figure ~\ref{fig:hand-original-image},~\ref{fig:hand-global-threshold},~\ref{fig:MRI-original-image}, and ~\ref{fig:MRI-global-threshold}.
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/global/hand-original-image.jpg}
+\caption{Original image of interest (\textit{0019hv3.bmp}) }
+\label{fig:hand-original-image}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/global/hand-global-threshold.jpg}
+\centering
+\caption{Global thresholded image [optimal] (\textit{Threshold = 95.51}) }
+\label{fig:hand-global-threshold}
+\end{figure}
+
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/global/MRI-original-image.jpg}
+\caption{Original image of interest (\textit{MR1Brain2.jpg}) }
+\label{fig:MRI-original-image}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/global/MRI-global-threshold.jpg}
+\centering
+\caption{Global thresholded image [optimal] (\textit{Threshold = 48.49}) }
+\label{fig:MRI-global-threshold}
+\end{figure}
+
+
+\section*{Local Optimal Thresholding: Implementation}
+Local optimal thresholding is based on dividing the images unit blocks and threshold each block
+independently by optimal method then add all the thresholded blocks to get the output thresholded image.
+ 
+The localOptimalThresholding function takes the input image to be thresholded using \textit{Optimal Thresholding} , block size returns the thresholded image.
+
+\subsection*{\textbf{Results}}
+Using our implementation of local optimal thresholding we could produce the following images. see Figure ~\ref{fig:MRI-original-image}, ~\ref{fig:MRI-local-threshold16},~\ref{fig:MRI-local-threshold32},  ~\ref{fig:MRI-local-threshold64},~\ref{fig:MRI-local-threshold128}, and ~\ref{fig:MRI-local-threshold256}. 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/global/MRI-original-image.jpg}
+\caption{Original image of interest (\textit{MR1Brain2.jpg ( 512 X 512 )}) }
+\label{fig:MRI-original-image}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/local/MRI-local-threshold16.jpg}
+\centering
+\caption{local thresholded image [optimal] (\textit{Block size 16 }) }
+\label{fig:MRI-local-threshold16}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/local/MRI-local-threshold32.jpg}
+\centering
+\caption{local thresholded image [optimal] (\textit{Block size 32 }) }
+\label{fig:MRI-local-threshold32}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/local/MRI-local-threshold64.jpg}
+\centering
+\caption{local thresholded image [optimal] (\textit{Block size 64 }) }
+\label{fig:MRI-local-threshold64}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/local/MRI-local-threshold128.jpg}
+\centering
+\caption{local thresholded image [optimal] (\textit{Block size 128 }) }
+\label{fig:MRI-local-threshold128}
+\end{figure}
+ 
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/local/MRI-local-threshold256.jpg}
+\centering
+\caption{local thresholded image [optimal] (\textit{Block size 256 }) }
+\label{fig:MRI-local-threshold256}
+\end{figure} 
+
+
+\subsection*{Otsu Thresholding} 
+The general overview of thresholding  using \textit{Otsu Thresholding}:
+At each gray level(0:255) we do the following: 
+\begin{enumerate}
+\item Calculating background weight and foreground weight.
+\item Calculating background mean and foreground mean.
+\item Calculating between class variance as follows : 
+
+\begin{equation} \label{betweenclassvaraince_eqn}
+{W_f}{W_b}{{(meanf-meanb)}^2}
+\end{equation}
+
+\item Calculating maximum Between Class Variance (minimum within class variance). 
+\end{enumerate} 
+
+\textbf{The otsu threshold is the gray level corresponding to maximum Between Class Variance 		(Minimum Within Class Variance).}
+
+\section*{Global Otsu Thresholding: Implementation}
+The globalOtsuThresholding function takes the input image to be thresholded using \textit{Otsu Thresholding} and returns the thresholded image and otsu threshold.
+
+
+\subsection*{\textbf{Results}}
+Using our implementation of global otsu thresholding we could produce the following images. see Figure ~\ref{fig:Beads-original-image},~\ref{fig:Beads-global-threshold-otsu},~\ref{fig:MRI-original-image}, and ~\ref{fig:MRI-global-threshold-otsu}.
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\paperwidth]{otsu-thresholding/global/Beads.jpg}
+\caption{Original image of interest (\textit{Beads.jpg}) }
+\label{fig:Beads-original-image}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{otsu-thresholding/global/Beads-global-otsu.jpg}
+\centering
+\caption{Global thresholded image [otsu]  (\textit{Threshold = 90}) }
+\label{fig:Beads-global-threshold-otsu}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/global/MRI-original-image.jpg}
+\caption{Original image of interest (\textit{MR1Brain2.jpg}) }
+\label{fig:MRI-original-image}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{otsu-thresholding/global/MRI-global-threshold-otsu.jpg}
+\centering
+\caption{Global thresholded image [otsu]  (\textit{Threshold = 49}) }
+\label{fig:MRI-global-threshold-otsu}
+\end{figure}
+
+
+\section*{Local Optimal Thresholding: Implementation}
+Local Otsu thresholding is based on dividing the images unit blocks and threshold each block
+independently by otsu method then add all the thresholded blocks to get the output thresholded image.
+ 
+The localOptimalThresholding function takes the input image to be thresholded using \textit{Optimal Thresholding} , block size returns the thresholded image.
+
+\subsection*{\textbf{Results}}
+Using our implementation of local otsu thresholding we could produce the following images. see Figure ~\ref{fig:MRI-original-image}, ~\ref{fig:MRI-local-threshold-otsu16},~\ref{fig:MRI-local-threshold-otsu32},  ~\ref{fig:MRI-local-threshold-otsu64},~\ref{fig:MRI-local-threshold-otsu128}, and ~\ref{fig:MRI-local-threshold-otsu256}. 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\paperwidth]{optimal-thresholding/global/MRI-original-image.jpg}
+\caption{Original image of interest (\textit{MR1Brain2.jpg ( 512 X 512 )}) }
+\label{fig:MRI-original-image}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{otsu-thresholding/local/MRI-local-threshold-otsu16.jpg}
+\centering
+\caption{local thresholded image [otsu] (\textit{Block size 16 }) }
+\label{fig:MRI-local-threshold-otsu16}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{otsu-thresholding/local/MRI-local-threshold-otsu32.jpg}
+\centering
+\caption{local thresholded image [otsu] (\textit{Block size 32 }) }
+\label{fig:MRI-local-threshold-otsu32}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{otsu-thresholding/local/MRI-local-threshold-otsu64.jpg}
+\centering
+\caption{local thresholded image [otsu] (\textit{Block size 64 }) }
+\label{fig:MRI-local-threshold-otsu64}
+\end{figure}
+
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{otsu-thresholding/local/MRI-local-threshold-otsu128.jpg}
+\centering
+\caption{local thresholded image [otsu] (\textit{Block size 128 }) }
+\label{fig:MRI-local-threshold-otsu128}
+\end{figure}
+ 
+
+\begin{figure}[h!]
+\includegraphics[width=0.4\paperwidth]{otsu-thresholding/local/MRI-local-threshold-otsu256.jpg}
+\centering
+\caption{local thresholded image [otsu] (\textit{Block size 256 }) }
+\label{fig:MRI-local-threshold-otsu256}
+\end{figure} 
+
+\end{document}
+
