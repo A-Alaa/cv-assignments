@@ -1,22 +1,27 @@
 import cv2 as cv
 import sys
+import numpy as np
 sys.path.append('../scripts')
-from OptimalThresholding import optimal_thresholding
+
+from globalOptimalThresholding import globalOptimalThresholding
+from localOptimalThresholding import localOptimalThresholding
 
 # load gray images
-imageColor = cv.imread('../images/assignment4/0019hv3.bmp')
-imageGray = cv.imread('../images/assignment4/0019hv3.bmp', cv.IMREAD_GRAYSCALE)
+imageColor = cv.imread('../images/assignment4/Beads.jpg')
+imageGray = cv.imread('../images/assignment4/Beads.jpg', cv.IMREAD_GRAYSCALE)
 
-# threshold gray image using optiaml thresholding method
-thresholded_image , optimal_threshold = optimal_thresholding(imageGray)
+# ---------------------------Global thresholding--------------------------------------- #
 
-print "optimal threshold", optimal_threshold
+thresholdedImageGlobal , optimal_threshold = globalOptimalThresholding(imageGray)
+print "global threshold using optimal thresholding method = ", optimal_threshold
+# ---------------------------local thresholding---------------------------------------- #
 
-cv.namedWindow('Original image',cv.WINDOW_NORMAL)
+blockSize = 16
+thresholdedImageLocal = localOptimalThresholding(imageGray , blockSize)
+
 cv.imshow('Original image', imageGray)
-
-cv.imshow('Thresholded image using optimal thresholding', thresholded_image)
-
+cv.imshow('global thresholding', thresholdedImageGlobal)
+cv.imshow("Local thresholding of block size " + str(blockSize) , thresholdedImageLocal)
 cv.waitKey(0)
 cv.destroyAllWindows()
 

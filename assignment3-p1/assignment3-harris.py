@@ -17,15 +17,17 @@ from Harris import HarrisCorner
 cv2.__version__
 # ____________________________________________________________________________________________________________________#
 
-imageColor = cv2.imread('../images/assignment2/Regular-Shapes.jpg')
-imageGray = cv2.imread('../images/assignment2/Regular-Shapes.jpg', 0)
+imageFileName = '../images/assignment3/Black&WhiteCow2.jpg'
+
+imageColor = cv2.imread(imageFileName)
+imageGray = cv2.imread(imageFileName, 0)
 
 # get current time before harris
 start = cv2.getTickCount()
 
-harrisCorners = HarrisCorner( 0.5, imageGray )
-harrisCorners.findCorners( 100000 )
-cornerIndex = harrisCorners.localMaxima( 19)
+harrisCorners = HarrisCorner( 1, imageGray )
+harrisCorners.findCorners( 100000)
+cornerIndex = harrisCorners.localMaxima( 25)
 # get current time after harris
 end = cv2.getTickCount()
 
@@ -39,7 +41,7 @@ print imageGray.shape, cornerIndex.shape
 for index in cornerIndex:
     x = index[1]
     y = index[0]
-    cv2.drawMarker( imageColor, (x,y), (0,0,0), markerSize=30 )
+    cv2.drawMarker( imageColor, (x,y), (0,0,0), markerSize=3 )
 
 cv2.namedWindow('image',cv2.WINDOW_NORMAL)
 cv2.imshow('image', imageColor)
