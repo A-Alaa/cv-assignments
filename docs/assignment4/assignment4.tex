@@ -369,7 +369,7 @@ segImage = meanShift.applyMeanShift()
 
 \subsubsection*{\textbf{Results}}  
 
-Here are some of the results, in figure \ref{fig:mean-shift-4}
+Here are some of the results, in figure \ref{fig:mean-shift-4}, \ref{fig:mean-shift-4-rgb} and \ref{fig:mean-shift-64}
 \begin{figure}[h!]
 \includegraphics[width=0.4\paperwidth]{mean-shift/window128-4cluster}
 \centering
@@ -381,15 +381,28 @@ Here are some of the results, in figure \ref{fig:mean-shift-4}
 \includegraphics[width=0.4\paperwidth]{mean-shift/mean-shift-rgb-4}
 \centering
 \caption{Image is segmented using mean-shift , 4 clusters, GB color-space }
-\label{fig:mean-shift-4}
+\label{fig:mean-shift-4-rgb}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 \includegraphics[width=0.4\paperwidth]{mean-shift/window32-64cluster}
 \centering
 \caption{Image is segmented using mean-shift, 64 clusters, LUV color-space }
 \label{fig:mean-shift-64}
 \end{figure}
+
+\subsection*{Agglomerative segmentation}
+This type of segmentation is based on the Agglomerative Hierarchy segmentation algorithm. In this  implementations, we cluster the image RGB components in the LUV color-space.
+\\
+agglomerative = AgglomerativeClustering( featureVector , nclusters = 7 )
+\\
+This function require either U or V frame from the image flattened to 1D-array $\rightarrow featureVector$, and number of clusters
+\\
+labels = agglomerative.labels
+\\
+return the labels of the clusters
+\\
+This function returns the segmented image of 'image'. The user select the region to be highlighted using the mouse pointer
 
 
 \end{document}
