@@ -1,0 +1,43 @@
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+\definecolor{black}{rgb}{0.0, 0.0, 0.0}	
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+\usepackage[procnames]{listings}
+
+\usepackage{caption}
+
+\lstset{language=Python, 
+        basicstyle=\ttfamily\footnotesize, 
+        backgroundcolor=\color{backcolour}, 
+        keywordstyle=\color{keywords}\ttfamily,
+        commentstyle=\color{green}\ttfamily,
+        stringstyle=\color{red}\ttfamily, 
+        identifierstyle=\color{black}\ttfamily,
+        procnamekeys={def,class} ,
+	stepnumber=1, 
+  	numbersep=10pt,                        
+  	tabsize=2,                            
+  	extendedchars=true,                     
+  	breaklines=true,                 
+  	captionpos=t,                          
+  	mathescape=true,
+  	showspaces=false,  
+  	showtabs=false,           
+  	xleftmargin=17pt,
+  	framexleftmargin=17pt,
+  	framexrightmargin=17pt,
+  	framexbottommargin=5pt,
+  	framextopmargin=5pt,
+  	showstringspaces=false }
+        
+\DeclareCaptionFormat{listing}{\rule{\dimexpr\textwidth+17pt\relax}{0.4pt}\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt,labelsep=space,labelfont=bf}
+
+\renewcommand\lstlistingname{Implementation}
+
+
+
